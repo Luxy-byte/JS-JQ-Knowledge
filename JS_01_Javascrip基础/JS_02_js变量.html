@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // --------------声明变量并赋值-------------------
+        // 1.声明一个 age 变量
+        var age;
+
+        // 2.赋值 把值存入这个变量中
+        age = 18;
+
+        // 3.输出结果
+        console.log(age);
+        alert(age);
+
+        // 4.变量的初始化
+        var myname = 'luxh';
+        alert(myname)
+        // ----------------------------------------------
+
+
+
+
+        // --------------案列----------------------------
+
+        var mysex = prompt('请输入性别');
+        console.log(mysex);
+        // ----------------------------------------------
+
+
+
+        // --------------变量更新-------------------------
+
+            // 1.更新变量
+        var app01 = 'haha'
+        app01 = 'sasa'
+        app01 = 'haha and sasa'
+        console.log(app01)
+
+            // 2.声明多个变量
+        var app02 = 18, lulu = 'luxh', sasa = 'home'
+        console.log(app02,lulu,sasa)
+        // ----------------------------------------------
+
+        // ----------------案列:变量交换------------------
+
+        var test01 = 12;
+        var test02 = 20;
+            // 临时变量处理思路
+        var temp;
+
+        temp = test01
+        test01 = test02
+        test02 = temp
+        console.log(test01,test02)
+    </script>
+
+</head>
+<body>
+    <!-- 什么是变量 -->
+        <!-- 变量是用于存放数据的容器。通过 变量名 获取数据，甚至数据可以修改 -->
+        <!-- 变量的本质: 就是程序在内存中申请的一块用来存放数据的空间 -->
+
+    <!-- 声明变量 -->
+        <!-- 
+            语法:
+            var age = 值; // 声明一个 名称为age的变量 
+        -->
+        <!-- var： js关键字，用来声明变量，计算机会自动为变量分配内存空间 -->
+        <!-- age： 变量名，通过变量名来访问内存中分配的空间 -->
+
+    <!-- 变量更新 -->
+        <!-- 一个变量被重新赋值后，它原有的值就会被覆盖，变量值将以 最后一次 一次赋值为准。 -->
+
+        <!-- 1. 只声明 不赋值. 结果: undefined. 列: var age; console.log(age); -->
+        <!-- 2. 不声明,不赋值 直接使用. 结果: 报错. 列: console.log(name); -->
+        <!-- 3. 不声明 只赋值. 结果: 10. 列: age = 10; console.log(age); -->
+
+    <!-- 变量的命名规范 -->
+
+        <!-- 1. 由字母(A-Za-z),数字(0-9),下划线(_),美元符号($), 如: userName, _name, num01 -->
+        <!-- 2. 严格区分大小写, app01 不同于 App01 -->
+        <!-- 3. 不能以 数字开头 -->
+        <!-- 4. 不能是 关键字 保留字 -->
+        <!-- 5. 变量名必须有意义 -->
+        <!-- 6. 遵循驼峰命名法 首字母小写 后面的单词首字母大写 myFirstName -->
+    
+    <!-- 交换两个变量 -->
+
+    
+    
+</body>
+</html>
