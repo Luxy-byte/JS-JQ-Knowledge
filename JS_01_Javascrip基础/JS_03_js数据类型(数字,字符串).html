@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // javascript 属于弱语言类型，且只有在程序运行过程中，根据等号右边的值来确定数据类型
+        // int num = 10; java  -- 强语言类型
+        // var num = 10; js  -- 弱语言类型
+
+        // 数字型
+            var num01 = 10; // 数字型
+            var num02 = 3.14; // 数字浮点型
+
+            // 1. 八进制 0~7 程序里面数字前面加0 表示八进制
+            var num03 = 010;
+            console.log(num03);
+            var num04 = 012;
+            console.log(num04);
+
+            // 2. 十六进制 0 ~ 9 a ~ f
+            var num05 = 0x9;
+            console.log(num05);
+            var num06 = 0xa;
+            console.log(num06);
+
+            // 3. 数字型的最大 最小值
+            console.log(Number.MAX_VALUE);
+            console.log(Number.MIN_VALUE);
+
+            // 4. 三个特殊值
+            console.log(Infinity);  // 无穷大
+            console.log(-Infinity); // 无穷小
+            console.log(NaN);       // 代表一个非数值
+
+            // 5. isNaN() 方法用来判断 非数字，并且返回一个值， 如果是数字返回的是 false 如果不是数字返回 true
+            console.log(isNaN(12)); // false
+            console.log(isNaN('test')); // true
+
+        // 字符串型
+            var name = 'luxh'; // 单引号 或 双引号
+            var name01 = "luxh2";
+
+            // 1. 字符串转义符
+                /* 
+                (1) \n - 换行符
+                (2) \\ - 斜杠
+                (3) \' - 单引号
+                (4) \" - 双引号
+                (5) \t - tab缩进
+                (6) \b - 空格
+                */
+            console.log("lu\nxh");
+            console.log("lu\\xh");
+            console.log("\'luxh\'");
+            console.log("\"luxh\"");
+            console.log("\tluxh");
+            console.log("lu\bxh");
+            alert("\'hello world\'") // 弹出完整句型
+
+            // 2. 获取字符串长度 length()
+            var app01 = 'hahahahfduisafe';
+            console.log(app01.length);
+
+            // 3. 字符串拼接 字符串 + "任何类型" = 拼接之后的新字符串
+            var app02 = 'luxh';
+            var app03 = 18;
+            var app04 = true;
+            var final_end = app02 + app03 + app04;
+            console.log(final_end); // luxh18true
+                // 总结: 数字相加 字符相连
+
+        // 案列
+        var name = prompt("\'你今年多少岁\'")
+        var final_end = "原来如此你今年都是一个老东西了\n 没有猜错就是" + name + "岁"; 
+        alert(final_end)
+
+    </script>
+</head>
+<body>
+    <!-- js数据类型： -->
+        <!-- 简单类数据类型: number string boolean undefined null -->
+
+        <!-- 复杂数据类型：object -->
+</body>
+</html>

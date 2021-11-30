@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // -------------for循环:--------------------------------
+        for(var i = 1; i <= 100; i++){
+            console.log('hello world');
+        }
+
+        // 1 - 100的和
+        var app01 = 0;
+        for(var i = 0; i<=100; i++){
+            app01 += i;
+        }
+        console.log(app01);
+
+        // 1 - 100平均值
+        var app02 = 0;
+        for(var i = 0; i<=100; i++){
+            app02 += i;
+        }
+        console.log(app02/100);
+
+        // 1 - 100 偶数和奇数的和
+        var app03 = 0;
+        var app04 = 0;
+        for(var i = 0; i<=100; i++){
+            if(i % 2 == 0){
+                app03 += i;
+            }else{
+                app04 += i
+            }
+        }
+        console.log(app03, app04);
+
+        // 1 - 100 被3整除的数字和
+        var app05 = 0;
+        for(var i = 0; i <= 100; i++){
+            if(i % 3 == 0){
+                app05 += i
+            }
+        }
+        console.log(app05);
+
+        // 学生成绩同级案列
+        var total_num = prompt('输入');
+        var sum_num = 0;
+        for(var i = 0; i <= (total_num - 1); i++){
+            var each = prompt('第'+ (i + 1) +'个成绩')
+            sum_num += parseFloat(each)
+        }
+        alert(sum_num)
+        alert('平均为'+(sum_num / parseInt(total_num)))
+
+        // 一行打印五颗星星
+        var test = '';
+        for(var i = 0; i < 5; i++){
+            test+='*'
+        }
+        alert(test)
+
+
+        // 双重for - 打印星星
+        var c_num = parseInt(prompt('请输入'))
+        var final_count = ''
+        for(var i = 0; i < c_num; i++){
+            var temp_count = '';
+            for(var l = 0; l < (c_num-i); l++){
+                temp_count += '*'
+            }
+            final_count += '\n'+temp_count
+        }
+        console.log(final_count);
+
+        // 双重for - 打印99乘法表
+        var final_anwser = '';
+        for(var i = 0; i <= 9; i++){
+            for(var l = 1; l <= i; l++){
+                final_anwser += (l + '*' + i + '=' + l*i + ' ');
+            }
+            final_anwser += '\n'
+        }
+        console.log(final_anwser)
+
+        // -------------while循环：---------------------------------------------------
+
+        var whiletest = 1;
+        while(whiletest <= 100){
+            console.log('hello world');
+            whiletest++;
+        }
+
+        // ------------while循环：----------------------------------------------------
+
+        var app10 = 0;
+        do{
+            app10++
+        } while(app10 <= 100)
+
+
+        // ------------continue-------------------------------------------------------
+
+        for(var i = 1; i <= 5; i++){
+            if( i == 3){
+                continue;
+            }
+            console.log('我正在搞第'+ i +'个女人');
+        }
+
+        // ------------break----------------------------------------------------------
+
+        for(var i = 1; i <= 5; i++){
+            if( i == 3){
+                break;
+            }
+            console.log('我搞到第'+ i +'个女人了，我发现了虫子');
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+    <!-- 循环: 可以重复执行某些代码 -->
+
+        <!-- for 循环 -->
+        <!-- 
+            语法: 
+            for(初始化变量; 条件表达式; 操作表达式){
+                循环体
+            }
+            初始化变量: 用var声明的一个普通变量 通常用于作为计数器使用
+            条件表达式: 用来决定每一次循环是否继续执行 且 终止条件
+            操作表达式: 每次循环最后执行的代码. 经常用于计数器变量
+        -->
+
+        <!-- 双重for循环 -->
+        <!-- 
+            语法:
+            for(外层初始化变量; 外层条件表达式; 外层操作表达式) {
+                for(里层初始化变量; 里层条件表达式; 里层操作表达式){
+
+                };
+
+            };
+            1.可以把里面的循环看作是外层循环的语句
+            2.外层循环 循环一次 里面的循环执行全部        
+        -->
+
+
+
+        <!-- while 循环 -->
+            <!-- 
+                语法：
+                while(条件表达式){
+                    循环体
+                }
+
+                表达式为true则执行循环体 否则退出循坏
+             -->
+
+        <!-- do..while 循环 -->
+             <!-- 
+                 语法：
+                 do{
+                     循环体
+                 } while(条件表达式)
+
+                先执行一次循环体，在判断条件表达式
+              -->
+
+        <!-- break 和 continue -->
+
+              <!-- continue：立即跳出本次循环 继续进行下一次循环 -->
+              <!-- break: 立即跳出循环 -->
+
+    <!-- 总结 -->
+</body>
+</html>

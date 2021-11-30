@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 布尔型
+            var flag01 = true;
+            var flag02 = false;
+            console.log(flag01 + 1); // true 为 1
+            console.log(flag02 + 1); // flase 为 0
+
+        // undefined - 未定义类型
+            // 声明以后没有赋值的 默认为 undefine
+            var name = undefined;
+            console.log(name + 'luxh'); // 任何结果和字符串相加 最终都为 字符串
+            console.log(name + 1); // NaN undefined 和数字相加为 NaN 
+
+        // null - 空
+            var app01 = null;
+            console.log('test' + app01); // testnull
+            console.log(app01 + 1); // 1
+
+        // typeof 检测数据类型
+            var app02 = 10;
+            console.log(typeof app02);
+
+            var input_c = prompt('请输入')
+            alert(typeof input_c)
+
+        // 数据类型转换
+            // 把一种数据类型转换为另一种数据类型
+
+            // 1.转字符串型 toString(); String(); +(加号);
+            var app03 = 12;
+            console.log(app03.toString()) // 弱转换
+            console.log(String(app03)) // 强转换
+            console.log(app03 + "", typeof (app03 + "")); // 加号转换
+
+            // 2.转数字型 parseInt(string); parseFloat(string); Number()-强制转换; js隐式转换(运算符：- * /)
+            var app04 = '18.34';
+            console.log(parseInt(app04), typeof parseInt(app04)); // 自动取整，后续没有
+            console.log(parseFloat(app04), typeof parseFloat(app04));
+            console.log(Number(app04), typeof Number(app04));
+            console.log(app04 - 10, typeof (app04 - 10)); // +加号 除外，因为具有 字符串相加的意思
+
+        // 布尔类型转换
+            // Boolean() 方法, 代表空，否定的值会被转换为false 如：'', 0, NaN, null, undefined； 其余值则为 true
+            console.log(Boolean(""));
+            console.log(Boolean("小白"));
+
+            
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

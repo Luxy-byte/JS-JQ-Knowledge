@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 分支结构
+
+        // if语句：
+        // 单分支语句：
+        /* 
+        if(条件表达式){
+            如果条件为真，则执行语句
+        } 
+        */
+
+        // 双分支语句：
+        /* 
+        if(条件表达式){
+            如果条件为真，则执行语句
+        } else{
+            以上都不为，则执行 else内的代码
+        }
+        */
+        var age = prompt('年纪')
+        if(age >= 18){
+            console.log('进入')
+        } else{
+            console.log('不能进入')
+        }
+
+        // 多分支语句：
+        /* 
+        if(条件表达式){
+            条件1
+        }else if{
+            条件2
+        }else if{
+            条件3
+        }
+        else{
+            以上都不为，则执行 else内的代码
+        }
+        */
+
+        var Pscore = prompt('输入')
+        if(Pscore <= 60){
+            console.log('不及格')
+        }else if(60 < Pscore <= 70){
+            console.log('良')
+        }else if(Pscore > 70){
+            console.log("优秀")
+        }else{
+            console.log("gun")
+        }
+
+
+        // 三元表达式
+            // 语法： 条件表达式? 表达式1：表达式2
+            // 如果条件为真 返回表达式1 反之为2
+        var sanyuan = 1 > 2? 'huahua':'lala'
+        alert(sanyuan)
+
+
+
+        // switch分支语句 主要针对一些特定值 使用
+        // 语法：
+
+        // switch(表达式){
+
+        //     case value1:
+        //         执行语句1;
+        //         break;
+
+        //     case value2:
+        //         执行语句2;
+        //         break;
+
+        //     case value3:
+        //         执行语句3;
+        //         break;
+        //      
+        //     default:
+        //         什么都没有匹配 执行最后的语句
+        // }
+        // 利用表达式的值 和 case 的选项值 进行匹配，如果匹配上则 执行
+
+        var app01 = 8;
+        switch(app01*10){
+            case 90:
+                console.log('90 正在执行');
+                break
+            case 80:
+                console.log("80 正在执行");
+        }
+
+        // 注意事项：
+            // 匹配的时候 是 === 全等
+            // 如果没有 break 则执行剩下的case 或者 default
+
+    </script>
+</head>
+<body>
+    <!-- 流程控制 -->
+        <!-- 顺序结构 -->
+            <!-- 按照顺序 从上至下的执行代码 -->
+
+        <!-- 分支结构 -->
+            <!-- if语句 -->
+            <!-- switch语句 -->
+            <!-- 
+                区别:
+                    1.两个语句可以相互替换
+                    2.switch..case 通常处理case 比较确定的值的情况, 而 if else 用于范围判断更多
+                    3.switch进行条件判断后直接执行到程序的条件语句 , 效率更高.  而 if else 是逐条对比 判断更多
+                    4.分支少时, if else 效率更高
+                    5.分支多时, switch 效率更高
+             -->
+    
+</body>
+</html>

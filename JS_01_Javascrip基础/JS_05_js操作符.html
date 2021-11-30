@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //算术运算符： +， -， *， /， %，
+            var a = 10, b = 12;
+            console.log(a + b);     //加法
+            console.log(b - a);     //减法
+            console.log(a * b);     //乘法
+            console.log(b / a);     //除法
+            // 1.取余
+            console.log(b % a);
+            // 2.浮点数 算数运算里面会有问题
+            console.log(0.1 + 0.2);  // 0.30000000000000000004
+            console.log(0.07 * 100);  // 7.00000000000001
+            // 3.我们不能直接拿浮点数来进行比较
+            var num = 0.1 + 0.2
+            console.log(num == 0.3); // false
+
+        // 前置运算符
+            var app01 = 10;
+            console.log(++app01 + 10); // 21
+
+        // 后置运算符 
+            var app02 = 10;
+            console.log(app02++ + 10); // 20
+
+            // ------------前置 后置 区别---------------
+            var test01 = 10; 
+            ++test01;   // ++test01 11 test01 = 11
+            var b = ++test01 + 2;  // test01 = 12 ++test01=12
+            console.log(b); // 14
+
+            var test02 = 10;
+            test02++;  // test02++ = 11, test02 = 11
+            var d = test02++ + 2; // test02++ = 11 test02 =12
+            console.log(d); // 13
+
+            var test03 = 10;
+            var e = test03++ + ++test03; // 1. test03++ = 10, test03 = 11  | 2. test03 = 12 ++test03 = 12
+            console.log(e); // 22
+            // ----------------------------------------
+            // 总结：前置： 先自加，后运算 | 后置: 先自加， 后运算
+
+
+        // 比较运算符：两个数据进行比较时用到的运算符 返回 true/false
+            console.log(1 < 2);     // 小于
+            console.log(1 > 2);     // 大于
+            console.log(2 >= 2);    // 大于等于
+            console.log(3 <= 2);    // 小于等于
+            console.log(2 == '2');    // 判断号 默认会转换数据类型
+            console.log(2 != 2);    // 不等号
+            console.log(3 === '3'); // 全等 数据类型也必须一致
+
+        // 逻辑运算符：返回 true/false
+            // &&  -- and 且 两边必须同时满足
+            console.log(3 > 5 && 3 > 2); //false
+            // ||  -- or 或  单边满足即可
+            console.log(3 > 5 || 3 > 2); //true
+            // ！  -- not 非 
+            console.log(!true); // false
+
+        // 逻辑短路原理
+            // 当有多个表达式， 左边 表达式可以确定结果时，那么将不再进行 右边 的运算
+                // 逻辑与 &&：
+                // 语法： 表达式1 && 表达式2
+                // 第一个值为真 则返回 表达式2
+                // 第一个值为假 则返回 表达式1
+
+                // 逻辑或 ||：
+                // 语法：表达式1 || 表达式2
+                // 第一个值为真 则返回 表达式1
+                // 第一个值为假 则返回 表达式2
+
+                // 案列：
+                var app03 = 0;
+                console.log(123 || app03++); // 逻辑短路 直接抛出123 不会在往下执行
+                console.log(app03); // 0
+
+        // 赋值运算符
+            // 直接赋值
+            var app04 = '我是值'
+            // 加 减 乘 除 取余 后在赋值 += -+ *= /= %=
+            var app05 = 10;
+            app05 += 5;
+            console.log(app05); // 15
+
+        // 运算符优先级
+            // 逻辑与 > 逻辑或
+    </script>
+</head>
+<body>
+    <!-- 运算符： -->
+        <!-- 用于实现赋值,比较 和 执行算数运算等功能的符号 -->
+
+    <!-- 表达式： -->
+        <!-- 由数字 运算符 变量等组成的式子 -->
+        <!-- 都会有一个返回值 -->
+    
+</body>
+</html>
