@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 创建数组 array
+            // 1.new Array() 创建数组
+
+            var app01 = new Array();
+
+            // 2.[] 创建数组
+            var app02 = [1, 2, 3, true, 'lulu', 3.14];
+
+        // 访问数组： 下标 0 开始访问
+            console.log(app02[0]); // 数组元素访问
+
+        // 遍历数组：
+            for(var i = 0; i < app02.length; i++){
+                console.log(app02[i]);
+            }
+
+        // 数组最大值：
+            var arr = [2,6,1,77,52,25,7]
+            var temp = arr[0]
+            for(var i = 0; i < arr.length; i++){
+                if(arr[i] > temp){
+                    temp = arr[i]
+                }
+            }
+            console.log(temp);
+
+        // 数组转文字
+            var app03 = ['lulu', 'sasa', 'hahha']
+            var str = ''
+            for(var i = 0; i < app03.length; i++){
+                str += app03[i]
+                str += '|'
+            }
+            console.log(str);
+
+        // 数组中新增元素
+            var app04 = [5,6,8,9,10]
+            // 1.修改length长度
+            app04.length = 8; // 修改数组长度为8 超出部分为 undefined
+            console.log(app04[7]); // undefined
+
+            // 2.修改索引 追加数组元素
+            app04[3] = 'hahha';
+            console.log(app04);
+
+        // 冒泡排序
+            var app05 = [1,43,64,48,7,45,3,0,56,2]
+            for(var i = 0; i < (app05.length - 1); i++){ // 外层循环 管躺数
+                for(var j = 0; j < app05.length - i -1; j++){ // 内层循管 每一躺的交换次数
+                    if(app05[j] > app05[j+1]){
+                    var temp = app05[j]
+                    app05[j] = app05[j+1]
+                    app05[j+1] = temp
+                    }
+                }
+            }
+            console.log(app05);
+
+
+
+    </script>
+</head>
+<body>
+    <!-- 数组 -->
+        <!-- 指一组数据的集合，每个数据称为 元素。 可以存放任意类型的元素 -->
+
+    <!-- 索引 -->
+
+        <!-- 用来访问数组元素的序号 从下标0开始 -->
+
+        <!-- 如果没有指定的值 则返回 undefined -->
+
+        <!-- 数组元素访问：数组名[索引] -->
+
+        <!-- 数组长度：数组名.length -->
+
+
+    
+</body>
+</html>
