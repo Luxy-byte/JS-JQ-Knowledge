@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 字符串对象
+        var str1 = 'lulululu';
+        console.log(str1.length); // 8
+
+            // 基本包装类型，就是把简单数据类型 封装成 复杂数据类型，， 使其具备 对象性质
+            // （1）把简单数据类型封装成复杂数据类型
+                        // var temp = new String('lulululu')
+            // （2）把临时变量的值给 str
+                        // str = temp;
+            // （3）销毁临时变量
+                        // temp = null;
+
+            // （4）字符串不可变，看上去值可以发生变化，但其实是内存地址变了而已
+
+        // 返回单一字符所在的位置
+        var str2 = '发货的水电的的的幅度萨芬发大水';
+        console.log(str2.indexOf('的')); // 3 indexOf()正序查找 lastindexOf()反序查找
+        console.log(str2.indexOf('的', 3)); // 5 从索引3的位置开始查找
+
+        // 单一字符串出现的位置 及 出现次数
+        var str3 = 'fdasfdaofesfdaofdaefgfohtfdsyhoregfdos'
+        var index = str3.indexOf('o')
+        while(index !== -1){
+            console.log(index);
+            index = str3.indexOf('o', index+1)
+        } // 7 14 22 30 36
+
+
+        // 根据位置返回字符 charAt(index) charCodeAt(index) str[index]
+        var str4 = 'fluxy'
+        console.log(str4.charAt(3)); // x 返回指定位置的字符
+        console.log(str4.charCodeAt(3)); // 120 对应的 Ascii码
+        console.log(str4[3]); // x 指定位置处字符
+
+            // 统计每个字符出现次数
+            var str5 = 'fagrdsafreaffshbfujytrttuyrr'
+            var temp = {}
+            for(var i = 0; i < str5.length; i++){
+                var chars = str5.charAt(i)
+                if(temp[chars]){
+                    temp[chars]++
+                }else{
+                    temp[chars] = 1
+                }
+            }
+            console.log(temp);
+
+            // 遍历对象
+            var max = 0
+            var ch = ''
+            for(var k in temp){
+                if(temp[k] > max){
+                    max = temp[k]
+                    ch = k
+                }
+            }
+            console.log(ch,max);
+
+        // 字符串操作 concat(str1，str2，str3....) 拼接 | substr(begin, length) 从begin位置开始 length取的个数
+        // slice(start, end) 从start 截取到 end 位置 | substring(start,end) 从 start 截取到end (不接受负值)
+        var str6 = 'lu'
+        var str7 = 'xhfdsa'
+        var str8 = ''
+        console.log(str8.concat(str6, str7));
+        console.log(str7.substr(2,3));
+        console.log(str7.slice(0,4));
+
+        // 替换 replace('被替换字符', '新字符') | split('分隔符')
+        var str9 = 'hahaha'
+        console.log(str9.replace('h','x')); // xahaha 只替换第一个找到的
+
+        var str10 = 'feji,fdsioe,fdsio'
+        console.log(str10.split(',')); // 转化为 数组
+
+        // 大小写转换 toUpperCase() 大写 | toLowerCase() 小写
+        var str11 = 'luXing'
+        console.log(str11.toUpperCase());
+        console.log(str11.toLowerCase());
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
