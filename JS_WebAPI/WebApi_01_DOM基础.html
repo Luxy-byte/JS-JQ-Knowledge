@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+    </script>
+</head>
+<body>
+    <!-- DOM -->
+        <!-- 稳当对象模型，处理html的标准编程接口 -->
+        <!-- 
+            DOM树：
+            文档：一个页面就是一个文档，DOM中使用 document 表示
+            元素：页面中的所有标签都是元素，DOM中使用 element 表示
+            节点：网页中的所有内容都是节点(标签，属性，文本，注释等)， DOM中使用node表示
+         -->
+
+
+    <!-- 根据id获取 -->
+    <div id="app01">hello world</div>
+
+
+    <!-- 根据标签名获取 -->
+    <ul>
+        <li>lululu1</li>
+        <li>lululu2</li>
+        <li>lululu3</li>
+        <li>lululu4</li>
+        <li>lululu5</li>
+    </ul>
+
+    <ul id="app02">
+        <li>lululu6</li>
+        <li>lululu7</li>
+        <li>lululu8</li>
+        <li>lululu9</li>
+        <li>lululu10</li>
+    </ul>
+
+    <!-- 根据类名获取 -->
+
+    <div class="box">盒子1</div>
+    <div class="box">盒子2</div>
+    <div id="app03">
+        <ul>
+            <li>首页</li>
+            <li>产品</li>
+        </ul>
+    </div>
+
+
+
+
+
+
+    <!-- 因为文档页面从上往下加载，所以先得有标签，所以先把script写到标签下面 -->
+    <script>
+        // 1.根据ID获取元素  document.getElementById
+            // 找到返回 “对象” 找不到返回null
+        var test01 = document.getElementById('app01')  // id是大小写敏感的字符串
+        console.log(test01);
+        console.log(typeof test01);
+
+        console.dir(test01);  // 可以打印元素对象的 属相和方法
+
+
+        // 2.根据标签名获取元素  getElementsByTagName
+            // 找到返回 “对象集合”
+        var test02 = document.getElementsByTagName('li')
+        console.log(test02); // 以伪数组的形式存储
+        console.log(typeof test02);
+        console.log(test02[3]); // 下标获取单一元素
+            // 获取指定的类下的 标签
+        var test03 = document.getElementById('app02') // 先获取这个id 元素
+        var test04 = test03.getElementsByTagName('li')
+        console.log(test04);
+
+
+        // 3.根据类名获取元素  getElementsByClassName
+            // 找到返回 “对象集合”
+        var test05 = document.getElementsByClassName('box')
+        console.log(test05);
+
+
+        // 4.根据指定选择器返回第一个元素对象  querySelector
+        var test06 = document.querySelector('.box')  // 直接返回第一个选择器的元素
+        var test07 = document.querySelector('li') // 返回第一个首页
+
+        // 5.根据选择器返回所有的元素的集合  querySelectorAll
+        var test07 = document.querySelectorAll('.box')  // 返回所有.box
+
+
+
+        // 6.获取body标签
+        var test08 = document.body;
+        console.log(test08);
+        console.dir(test08)
+
+        // 7.获取html标签
+        var test09 = document.documentElement
+        console.log(test09);
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

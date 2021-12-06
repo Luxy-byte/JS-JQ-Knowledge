@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1.事件 -->
+        <!-- 触发--响应2的机制 -->
+        <!-- 
+            事件三要素：事件源 事件类型 事件处理程序
+
+            事件源：事件被触发的对象 
+            事件类型：如何触发  如：鼠标点击 onclick
+            事件处理程序：通过一个函数赋值2的方式 完成
+         -->
+    <div id="btn">点我</div>
+
+         <!-- 
+             鼠标事件概览：
+             1.onclick          - 鼠标点击
+             2.onmouseover      - 鼠标经过
+             3.onmouseout       - 鼠标离开
+             4.onfocus          - 获得焦点
+             5.onblur           - 失去焦点
+             6.onmousemove      - 鼠标移动
+             7.onmouseup        - 鼠标弹起
+             8.onmousedown      - 鼠标按下
+        -->
+
+    <!-- 2.改变元素内容 -->
+
+    <input type="button" value="显示当前时间" id="time_btn">
+    <span class="crt_time">这是innerHTML 案列</span>
+    <span class="crt_time">这是innerText 案列</span>
+
+
+    <!-- 3.改变元素属性 -->
+    <p>------------------------------</p>
+    <input type="button" value="pic1" id="p_btn1">
+    <input type="button" value="pic1" id="p_btn2"> 
+    <img src="./images/pic01.jpg" alt="换贴图" id="t_images">
+
+
+
+    <!-- 4.修改表单元素 -->
+    <p>------------------------------</p>
+    <input type="text" value="hello world" id="app01">
+    <button id="btn_app01">按钮</button>
+
+
+    
+
+
+    <script>
+        // 事件三要素的体现
+        var btn = document.getElementById('btn');
+        btn.onclick = function(){
+            alert('hello world')
+        }
+
+
+        // 改变元素内容 innerHTML innerText
+        var change_time = document.getElementById('time_btn')
+        change_time.onclick = function() { 
+            var c1_time = document.getElementsByClassName('crt_time')[0];
+            var c2_time = document.getElementsByClassName('crt_time')[1];
+            c1_time.innerHTML = '<h1>'+ new Date() +'</h1>' // innerHTML 起始位置到终止位置 全部内容 识别html标签， 保留 空格 和 换行
+            c2_time.innerText = '<h1>'+ new Date() +'</h1>' // innerText 起始位置到终止位置 中间内容 不识别html标签，不保留 空格 和 换行
+         }
+
+        // 修改元素属性 
+        var pic_btn1 = document.getElementById('p_btn1');
+        var pic_btn2 = document.getElementById('p_btn2');
+        var p_img = document.getElementById('t_images');
+        pic_btn1.onclick = function(){
+            p_img['src'] = './images/pic01.jpg'
+        }
+        var pic_btn2 = document.getElementById('p_btn2');
+        pic_btn2.onclick = function(){
+            p_img['src'] = './images/pic02.jpg'
+        }
+
+        // 修改表单元素
+        var btn_app01 = document.getElementById('btn_app01');
+        var btn_app01_content = document.getElementById('app01');
+        btn_app01.onclick = function() { 
+            btn_app01_content.value = 'lululu';
+            this.disabled = true; // this 指向的是事件函数的调用者
+        }
+
+
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 1440px;
+        }
+        .change{
+            font-size: 26px;
+            color: aquamarine;
+        }
+        .password{
+            color: red;
+            font-size: 12px;
+            display: inline-block;
+        }
+        .app07{
+            margin: 0 auto;
+            width: 525px;
+            height: 100px;
+            border: 1px solid black;
+
+        }
+        .app07 ul{padding: 0; margin: 0; list-style: none;}
+        .app07 ul li{
+            width: 125px;
+            height: 80px;
+            display: block;
+            float: left;
+            margin-top: 10px;
+            margin-left: 5px;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+
+        table{margin: 0 auto;width: 1200px;}
+
+
+        tr{border-bottom: 1px solid #ccc; display: block; margin-top: 5px;}
+        table tr th{text-align: center; width: 200px;}
+        table tr td{text-align: center; width: 200px;}
+    </style>
+</head>
+<body id="main">
+    <!-- 元素样式修改 大小 颜色 位置 -->
+        <!-- 类名.style 行内样式操作 -->
+            <!-- 权重高，因为是行内样式 -->
+
+        <!-- 类名.className 类名样式操作 -->
+
+    <div id="app01">hello world</div>
+    <div id="app02">
+        <a href="#" id="app02_click">点我消失</a>
+    </div>
+
+
+    <!-- 失去焦点onblur 获得焦点onfocus -->
+    <input type="text" name="" id="app03">
+
+
+    <p class="app04">我是lululllu‘</p>
+
+
+    <p>---------------------------------</p>
+    <div><input type="password" name="" id="password"><span id="app05"></span></div>
+
+
+    <p>---------------------------------</p>
+
+    <button class="app06">按钮1</button>
+    <button class="app06">按钮2</button>
+    <button class="app06">按钮3</button>
+    <button class="app06">按钮4</button>
+    <button class="app06">按钮5</button>
+
+    <p>----------------------------------</p>
+
+    <div class="app07">
+        <ul>
+            <li class="app07_pic"><img src="./images/pic01.jpg" alt=""></li>
+            <li class="app07_pic"><img src="./images/pic02.jpg" alt=""></li>
+            <li class="app07_pic"><img src="./images/pic03.jpg" alt=""></li>
+            <li class="app07_pic"><img src="./images/pic04.jpg" alt=""></li>
+        </ul>
+    </div>
+
+    <p>----------------------------------</p>
+    <table class="app08">
+
+        <thead>
+            <tr>
+                <th>代码</th>
+                <th>名称</th>
+                <th>最新公布净值</th>
+                <th>累计净值</th>
+                <th>前单位净值</th>
+                <th>净值增长率</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>003526</td>
+                <td>农银金惠3个月定期证券</td>
+                <td>1.075</td>
+                <td>1.079</td>
+                <td>1.074</td>
+                <td>+0.046%</td>
+            </tr>
+
+            <tr>
+                <td>003526</td>
+                <td>农银金惠3个月定期证券</td>
+                <td>1.075</td>
+                <td>1.079</td>
+                <td>1.074</td>
+                <td>+0.046%</td>
+            </tr>
+
+            <tr>
+                <td>003526</td>
+                <td>农银金惠3个月定期证券</td>
+                <td>1.075</td>
+                <td>1.079</td>
+                <td>1.074</td>
+                <td>+0.046%</td>
+            </tr>
+
+            <tr>
+                <td>003526</td>
+                <td>农银金惠3个月定期证券</td>
+                <td>1.075</td>
+                <td>1.079</td>
+                <td>1.074</td>
+                <td>+0.046%</td>
+            </tr>
+
+            <tr>
+                <td>003526</td>
+                <td>农银金惠3个月定期证券</td>
+                <td>1.075</td>
+                <td>1.079</td>
+                <td>1.074</td>
+                <td>+0.046%</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <p>--------------------------------------------</p>
+
+    <table class="app09">
+        <thead>
+            <tr>
+                <td><input type="checkbox" id="chk_all"></td>
+                <td>商品</td>
+                <td>价格</td>
+
+            </tr>
+        </thead>
+
+        <tbody id="chk_tb">
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone8</td>
+                <td>3000</td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone8</td>
+                <td>3000</td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone8</td>
+                <td>3000</td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone8</td>
+                <td>3000</td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone8</td>
+                <td>3000</td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone8</td>
+                <td>3000</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>---------------------------------------------</p>
+    <div id="app10" data-index='1'>
+
+    </div>
+
+
+
+    <script>
+        // 行内样式修改
+        var app01 = document.getElementById('app01')
+        app01.onclick = function() { 
+            this.style = 'color: black; width: 200px; height: 200px; border: 1px solid black; text-align: center; line-height: 200px'
+            this.style.backgroundColor = 'red'; // 样式属性采用 驼峰命名法 比如 fontSize backgroundColor
+         }
+
+        var app02 = document.getElementById('app02');
+        var app02_click = document.getElementById('app02_click')
+        app02.onclick = function(){ 
+            this.style = 'width: 200px; height: 200px; border: 1px solid black;'
+            app02_click.style.display = 'none';
+         }
+
+         var app03 = document.getElementById('app03');
+         app03.onfocus = function() { 
+             this.placeholder = 'hello world'
+        }
+        app03.onblur = function() { 
+             this.placeholder = 'hello world2'
+        }
+
+
+        // 同过修改类 修改样式
+        var app04 = document.getElementsByClassName('app04')[0]
+        app04.onclick = function (){
+            this.className = 'app04 change'
+        }
+
+
+        // 验证密码案列
+        var password = document.getElementById('password')
+        var notice = document.getElementById('app05')
+        password.onblur = function(){
+            if(this.value.length < 5){
+                notice.className = 'password';
+                notice.innerHTML = '长度不够'
+
+            }
+        }
+
+        // 排他思想
+        var btn_t = document.getElementsByClassName('app06')
+        for(var i = 0; i < btn_t.length; i++){
+            btn_t[i].onclick = function(){
+                // 先把所有的背景色去掉
+                for(var i = 0; i < btn_t.length; i++){btn_t[i].style = 'color: none'}
+                // 在修改指定的那个
+                this.style = 'color: red;'
+            }
+        }
+
+        // 换肤效果
+        var app07 = document.getElementsByTagName('img');
+        for(var i = 0; i < app07.length; i++){
+            app07[i].onclick = function(){
+                document.body.style.background = 'url(' + this.src + ') no-repeat'
+                document.body.style.backgroundSize = '100% 100%'
+            }
+        }
+
+        // 隔行换色
+        var app08 = document.querySelector('.app08').querySelector('tbody').querySelectorAll('tr')
+        // console.log(app08);
+        for(var i = 0; i < app08.length; i++){
+            if(i%2 == 0){
+                app08[i].style.backgroundColor = 'red'
+            }
+            // 鼠标经过
+            app08[i].onmouseover = function(){
+                this.style.backgroundColor = 'green'
+            }
+            // 鼠标离开
+            app08[i].onmouseout = function(){
+                this.style.backgroundColor = ''
+            }
+        }
+
+        // 表单全选 全清
+        var app09 = document.getElementById('chk_tb').getElementsByTagName('input')
+        var chk_all = document.getElementById('chk_all') // 全选按钮
+
+            //  全选按钮逻辑
+        chk_all.onclick = function(){
+            for(var i = 0; i < app09.length; i++){
+                app09[i].checked = this.checked
+            }
+        }
+            // 小按钮逻辑
+        for(var i = 0; i < app09.length; i++){
+            app09[i].onclick = function(){
+                var flag = true;
+                for(var i = 0; i < app09.length; i++){
+                    if(!app09[i].checked){ // 正常为 true if走到下一步，在这里执行： 小按钮如果没有被选中， 总按钮就不会被选中
+                        flag = false;
+                    }
+                }
+                chk_all.checked = flag;
+            }
+        }
+
+        // 获取元素属性值
+            // 程序员自定的属性 称为自定义属性， biru 
+        var app10 = document.getElementById('app10')
+
+            // (1) element.属性, 是指元素内置的属性
+        console.log(app10.id);
+        // console.log(app10.data-index); 报错
+
+            // (2) 类名.getAttribute('属性')，可以获取程序员自己自定义的属性
+        console.log(app10.getAttribute('id'));
+        console.log(app10.getAttribute('data-index'));
+
+        // 设置元素属性值
+            // (1) 类名.属性 = 值 可以进行设置属性值
+        app10.id = 'test';
+        console.log(app10.id);
+            // (2) 类名.setAttribute('属性','值') 可以自定义设置 元素属性值
+        app10.setAttribute('data-index','2')
+        console.log(app10.getAttribute('data-index'));
+
+            // 修改class 特殊 app10.className = 值 |  app10.setAttribute('class','值')   class 名字有区别
+
+        // 移除元素属性 类名.removeAttribute('属性')
+        app10.removeAttribute('data-index')
+
+    </script>
+</body>
+</html>
