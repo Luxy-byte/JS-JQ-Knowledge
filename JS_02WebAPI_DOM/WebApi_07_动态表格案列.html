@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{margin: 0 auto;width: 600px;border: 1px solid black;}
+        th,td{text-align: center;border: 1px solid black;height: 45px;}
+        th{background-color: gray;}
+
+    </style>
+</head>
+<body>
+    <div>
+        <span>姓名：</span><input type="text" name="" id="name">
+        <span>科目：</span><input type="text" name="" id="subject">
+        <span>成绩：</span><input type="text" name="" id="score">
+        <button id="btn">添加</button>
+    </div>
+    <table cellspacing="0">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td>学生1</td>
+                <td>java</td>
+                <td>90</td>
+                <td><a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td>学生1</td>
+                <td>java</td>
+                <td>90</td>
+                <td><a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td>学生1</td>
+                <td>java</td>
+                <td>90</td>
+                <td><a href="#">删除</a></td>
+            </tr> -->
+        </tbody>
+
+    </table>
+
+
+
+    <script>
+
+        var data = {
+            name: document.querySelector('#name'),
+            subject: document.querySelector('#subject'),
+            score: document.querySelector('#score'),
+        }
+
+        var btn = document.querySelector('#btn')
+        var total_data = document.querySelector('tbody')
+
+        btn.onclick = function(){
+            var tr = document.createElement('tr')
+            tr.innerHTML = "<td>" + data.name.value + "</td>" + "<td>" + data.subject.value + "</td>" + "<td>" + data.score.value + "</td>" + "<td><a href=javascript:>删除</a></td>"
+            tr.setAttribute('data-index', (total_data.children.length + 1))
+            total_data.appendChild(tr)
+
+
+            var del_btn = document.getElementsByTagName('a')
+            for(var i = 0; i < del_btn.length;i++){
+
+                del_btn[i].onclick = function(){
+                    var num = this.getAttribute('data-index')
+                    total_data.removeChild(this.parentNode.parentNode)
+                    }
+                }
+        }
+
+
+
+
+    </script>
+</body>
+</html>

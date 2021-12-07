@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .app02{
+            margin: 0 auto;
+            width: 299px;
+            height: 200px;
+            border: 1px solid black;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .app02 ul li{
+            width: 99px;
+            height: 25px;
+            background-color: burlywood;
+            float: left;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            text-align: center;
+            display: block;
+        }
+        .app02 ul li span{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .app02 ul li:first-child{
+            border-left: 0;
+        }
+
+
+
+
+        .app02_t1{margin-top: 1px;}
+        .app02_t1 li{border: 0px!important;} 
+
+        
+
+    </style>
+</head>
+<body>
+    <!-- 节点操作: 解决获取元素冗余 复杂的问题 -->
+        <!-- 1.利用父子兄节点关系获取元素 -->
+        <!-- 2.逻辑性强,但是兼容性略差 -->
+
+        <!-- 3. 至少拥有: 
+            nodeType:节点类型
+            nodeName:节点名称
+            nodeValue:节点值 
+        -->
+
+    <div class="app01">
+        <ul class="app01_t1">
+            <li>
+                <div>1</div>
+            </li>
+            <li>
+                <div>2</div>
+            </li>
+            <li>
+                <div>3</div>
+            </li>
+        </ul>
+    </div>
+
+
+    <p>------------------------------</p>
+    <div class="app02">
+        <ul>
+            <li>
+                <span>选项1</span>
+                <ul class="app02_t1" style="display: none;">
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                </ul>
+            </li>
+            <li>
+                <span>选项2</span>
+                <ul class="app02_t1" style="display: none;">
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                </ul>
+            </li>
+            <li>
+                <span>选项3</span>
+                <ul class="app02_t1" style="display: none;">
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <p>----------------------------------</p>
+
+    <ul class="app03">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <p>新增节点</p>
+
+    <textarea name="app03_paper" id="app03_paper" cols="30" rows="10"></textarea>
+    <button class="app03_btn">提交</button>
+    <ul class="app03_msg">
+        <li>我是第一条</li>
+    </ul>
+
+    <p>删除节点</p>
+
+    <button class="app03_del">删除节点</button>
+    <ul class="app03_t1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+
+
+    <p>------------------------------------</p>
+
+    <ul class="app04">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+
+
+    <script>
+        // 传统获取元素对象的方式
+        var app01 = document.querySelector('.app01');
+        console.log(app01);
+        console.log(app01.nodeType); // 节点类型
+        console.log(app01.nodeName); // 节点名称
+        console.log(app01.nodeValue);// 节点值
+
+        // 1. 父节点 parentNode: 得到的是离元素 最近的 父节点
+        var app01_t1 = document.querySelector('.app01_t1')
+        console.log(app01_t1.parentNode); // 父节点   -- 找不到父节点 返回 null
+
+        // 2. 子节点 childNodes: 得到所有的子节点,包含 元素节点 文本节点 等等
+        console.log(app01_t1.childNodes); // 子节点  -- 包含了 空格 换行符
+        console.log(app01_t1.children); // 子元素节点 -- 不包含空格 等.
+
+        // 3. 获取层级操作: 
+            // (1)parentNode.lastChild/firstChild 不管什么节点类型
+            // (2)parentNode.lastElementChild/firstElementChild 以元素节点为基础
+        console.log(app01_t1.firstElementChild); // 获取第一个子元素节点   找不到返回 null
+        console.log(app01_t1.lastElementChild); // 获取最后一个子元素节点  找不到返回 null
+
+
+        // 子节点下拉菜单案列
+        var app02 = document.querySelector('.app02').querySelector('ul').children
+        console.log(app02);
+        for(var i = 0; i < app02.length; i++){
+            app02[i].onmouseover = function(){
+                this.children[1].style = 'display: block'
+            }
+            app02[i].onmouseout = function(){
+                this.children[1].style = 'display: none'
+            }
+        }
+
+        // 兄弟节点  取不到返回 null
+        var app03 = document.querySelector('.app03').children[3] // 4
+            // 下一个兄弟节点 ：nextSibling 但是包含 文本节点 和 元素节点  | nextElementSibling 下一个元素节点
+            console.log(app03.nextElementSibling); // 5
+            // 上一个兄弟节点 ： previousSibling 同样包含 文本节点 和 元素节点  | previousElementSibling 上一个元素节点
+            console.log(app03.previousElementSibling); // 3
+
+
+        // 创建节点 也称为“动态创建元素节点” 
+            // document.createElment('tagName') tagName 指定的html元素
+        var li = document.createElement('li')  // 创建一个新的li节点
+        li.innerHTML = 'hello world'
+        // 添加节点  默认是添加到末尾
+            // node.appendChild() node 父级 child 子级
+        app03.parentNode.appendChild(li) // 后面追加 类似push 
+            // 指定位置插入
+        var app03_t = document.querySelector('.app03')
+        var lili = document.createElement('li')  
+        lili.innerHTML = 'hello world2'
+        app03_t.insertBefore(lili, app03_t.children[2])
+
+        // 节点插入案列
+        var app03_btn = document.querySelector('.app03_btn')
+        var app03_msg = document.querySelector('.app03_msg')
+        var app03_paper = document.querySelector('#app03_paper')
+
+        app03_btn.onclick = function(){ 
+            var tmp = document.createElement('li')
+            tmp.innerText = app03_paper.value
+            app03_msg.insertBefore(tmp,app03_msg.children[0])
+            app03_paper.value = ''
+
+        }
+
+
+        // 删除节点
+        var app03_delbtn = document.querySelector('.app03_del')
+        var app03_t1 = document.querySelector('.app03_t1')
+            // node.removeChild(child) 返回删除的节点
+        app03_delbtn.onclick = function(){
+            if(app03_t1.children.length == 0){
+                this.disabled = true
+            }
+            app03_t1.removeChild(app03_t1.children[0]) // 返回删除的元素对象
+            
+        }
+
+        // 复制节点
+            // node.cloneNode( true | false)  默认false 则为浅拷贝 不复制里面的内容
+        var app04 = document.querySelector('.app04')
+        var li = app04.children[0].cloneNode(true); // 克隆以后 需要田间到页面中
+        app04.appendChild(li)
+
+
+
+
+        // 注意: 添加元素的区别
+
+
+            // 1.document.write() 直接将内容写入页面的内容流, 会导致页面重绘, 不可取 且 不常用
+
+            // 2.innerHTML 是将内容写入某个 DOM 节点,不会导致页面重绘
+
+            // 3.innerHTML 创建多个元素效率更高(不要直接拼接字符串,采用数组形式拼接最快),结构稍微复杂
+
+            // 4.createElement() 创建多个元素效率较低 但结构清晰
+
+
+        
+ 
+    </script>
+</body>
+</html>

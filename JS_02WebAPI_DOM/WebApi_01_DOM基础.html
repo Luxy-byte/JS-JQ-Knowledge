@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- DOM -->
-        <!-- 稳当对象模型，处理html的标准编程接口 -->
+        <!-- 文档对象模型，处理html的标准编程接口 -->
         <!-- 
             DOM树：
             文档：一个页面就是一个文档，DOM中使用 document 表示
@@ -53,10 +53,6 @@
     </div>
 
 
-
-
-
-
     <!-- 因为文档页面从上往下加载，所以先得有标签，所以先把script写到标签下面 -->
     <script>
         // 1.根据ID获取元素  document.getElementById
@@ -66,7 +62,6 @@
         console.log(typeof test01);
 
         console.dir(test01);  // 可以打印元素对象的 属相和方法
-
 
         // 2.根据标签名获取元素  getElementsByTagName
             // 找到返回 “对象集合”
@@ -93,8 +88,6 @@
         // 5.根据选择器返回所有的元素的集合  querySelectorAll
         var test07 = document.querySelectorAll('.box')  // 返回所有.box
 
-
-
         // 6.获取body标签
         var test08 = document.body;
         console.log(test08);
@@ -104,12 +97,7 @@
         var test09 = document.documentElement
         console.log(test09);
 
-
-
-
-
-
-
     </script>
+
 </body>
 </html>

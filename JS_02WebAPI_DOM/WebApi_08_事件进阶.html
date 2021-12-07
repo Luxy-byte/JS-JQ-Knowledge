@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .app01{
+            width: 100px;
+            height: 100px;
+            margin-top: 5px;
+            background-color: grey;
+        }
+        .app02{
+            margin-top: 5px;
+            width: 100px;
+            height: 100px;
+            background-color: indianred;
+            text-align: center;
+        }
+        .app02_son{
+            margin: 0 auto;
+            width: 50px;
+            height: 50px;
+            background-color: lightblue;
+            text-align: center;
+        }
+        .app03{
+            width: 100px;
+            height: 100px;
+            margin-top: 5px;
+            background-color: lightcoral;
+        }
+
+    </style>
+</head>
+<body>
+
+    <p>监听注册方式----------------</p>
+
+    <button>传统注册事件</button>
+    <button>监听注册事件</button>
+    <button>早期监听注册事件</button>
+
+    <p>删除事件--------------------</p>
+
+    <div class="app01">1</div>
+    <div class="app01">2</div>
+
+
+    <p>DOM事件流-------------------</p>
+    <p>事件流描述的是从页面中接收事件的顺序</p>
+    <p>事件发生时会在元素节点之间按照特定的顺序传播, 这个传播过程称为 事件流</p>
+    <p>三大阶段: 捕获阶段, 当前目标阶段, 冒泡阶段</p>
+    <div class="app02">
+        <div class="app02_son">子盒子</div>
+    </div>
+
+    <div class="app02">
+        <div class="app02_son">子盒子2</div>
+    </div>
+
+    <p>事件对象--------------------</p>
+    <div class="app03">事件对象</div>
+
+
+
+
+
+
+
+    <script>
+
+
+// 监听注册事件
+
+        // 1.传统注册方式: 注册事件的 "唯一性", 后面的方法会覆盖掉前面的
+        var btns = document.querySelectorAll('button')
+        btns[0].onclick = function(){
+            alert('hello world')  // 不会执行 会被覆盖
+        }
+        btns[0].onclick = function(){
+            alert('hello world too')
+        }
+
+        // 2. 监听注册方式 addEventListener()方法  按照注册顺序依次执行
+            // 语法:
+            // 对象.addEventListener(type, listener[, userCapture])
+            // type: 事件类型 click mouseover
+            // listener: 事件处理函数
+            // useCapture: 可选参数, 是一个布尔值 默认 false
+            
+        btns[1].addEventListener('click', function(){  // 事件类型 加 引号 且 不带 on
+            alert('lulu')
+        }, )
+
+        btns[1].addEventListener('click', function(){
+            alert('lulu2')
+        }, )
+
+
+// 删除事件
+        // 1.传统方式
+        var app01 = document.querySelectorAll('.app01')
+        app01[0].onclick = function () { 
+            alert('hello')
+            this.onclick = null;  // 传统方式解绑
+         }
+
+        //  新方法 removeEventListener()
+        app01[1].addEventListener('click', fn); // 最好不要用匿名函数
+
+        function fn(){
+            alert('hello 2')
+            app01[1].removeEventListener('click', fn)
+
+        }
+
+// DOM事件流
+        // 1.js代码中 只能执行 捕获 或 冒泡 中的一个
+        // 2.onlick 和 attachEvent 只能得到 冒泡阶段
+
+
+        // 3.捕获阶段 如果 addEventListener() 第三个参数为true 那么则出去捕获阶段 document - html - body - father - son
+        var son = document.querySelectorAll('.app02_son')[0]
+        function fn2(){
+            alert('儿子')
+        }
+        son.addEventListener('click', fn2, true) // 捕获阶段
+
+        var father = document.querySelectorAll('.app02')[0]
+        function fn3(){
+            alert('父亲')
+        }
+        father.addEventListener('click', fn3, true)  // 可以看到执行顺序为 先弹出 父亲 后 儿子, 从上往下 按顺序 执行事件方法
+
+
+        
+        // 4.冒泡阶段 如果 addEventListener() 第三个参数为false或省略, 则处于冒泡阶段 son - father - body - html - document
+        var son2 = document.querySelectorAll('.app02_son')[1]
+        function fn2(){
+            alert('儿子')
+        }
+        son2.addEventListener('click', fn2, false) // 冒泡阶段
+
+        var father2 = document.querySelectorAll('.app02')[1]
+        function fn3(){
+            alert('父亲')
+        }
+        father2.addEventListener('click', fn3, false) // 可以看到执行顺序为 先弹出 儿子 后 父亲, 从下往上 按顺序 执行事件方法
+
+        // 5.有些事件不会冒泡, onblur onfocus onmouseenter onmouseleave
+
+// 事件对象
+        // 1.event 就是一个事件对象, 可以当作形参看待
+        // 2.事件对象 只有有了事件才会存在,系统自动创建,不需要我们传递参数
+        // 3.事件对象 是 我们事件的一系列相关数据的集合,跟事件相关的任何信息 比如 鼠标点击的坐标 用户按下的键位 都会包含在里面
+
+        var app03 = document.querySelector('.app03')
+        app03.onclick = function (event) { 
+            console.log(event);
+        }
+        app03.addEventListener('click', function (event) { 
+            console.log(event);
+        },)
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{margin: 0; padding: 0;list-style: none;}
+
+        .change_color{background-color: red; color: black;}
+
+        .nav{margin: 0 auto; width: 500px;position: relative;}
+        .nav ul{width: 100%; height: 20px; background-color: cadetblue;}
+        .nav ul li{float: left; width: 20%;height: 95%; margin-left: 3px; text-align: center;line-height: 95%; cursor: default}
+
+        .nav div{position: absolute; top: 0; left: 0; width: 500px; height: 300px; border: 1px solid black; margin-top: 20px; display: none;}
+
+
+
+
+    </style>
+</head>
+<body>
+    <!-- tab栏切换 -->
+    <div class="nav">
+        <ul>
+            <li id="btn01">选项1</li>
+            <li id="btn02">选项2</li>
+            <li id="btn03">选项3</li>
+            <li id="btn04">选项4</li>
+        </ul>
+        <div class="page01" style="display: block;">1</div>
+        <div class="page01">2</div>
+        <div class="page01">3</div>
+        <div class="page01">4</div>
+    </div>
+
+    
+
+    <script>
+
+
+        // 自定义属性的应用
+        var app01 = document.querySelectorAll('li')
+        var page_tmp = document.getElementsByClassName('page01')
+        for(var i = 0; i < app01.length; i++){
+
+            app01[i].setAttribute('index', i)  // 每一个点击元素设置 索引属性
+
+            app01[i].onclick = function(){
+                for(var i = 0; i < app01.length; i++){
+                    app01[i].className = '';
+
+                    var index = this.getAttribute('index') // 获取每一个小元素的 小标索引号
+
+                    for(var i = 0; i < page_tmp.length; i++){
+                        page_tmp[i].style.display = 'none' // 排他思想影藏所有·
+                    }
+                    page_tmp[index].style.display = 'block'
+                }
+
+            }
+        }
+
+        // H5 自定义属性规范 ： 使用 data- 作为 开头
+
+        // H5 新增获取自定义属性的方法
+        // 1.类名.dataset.属性名
+        // 2.dataset 是一个集合，里面存放了所有以data开头的自定义属性
+
+    </script>
+</body>
+</html
