@@ -33,6 +33,13 @@
             background-color: lightcoral;
         }
 
+
+        .app05{margin: 0 auto; width: 300px; height: 300px; border: 1px solid black;}
+        .app05_son{margin: 0 auto; width: 150px; height: 150px; border: 1px solid black;margin-top: 75px;}
+
+        .app08{position: fixed; top: 0; left: 0; width: 5px; height: 5px; background-color: black;}
+
+
     </style>
 </head>
 <body>
@@ -63,6 +70,42 @@
 
     <p>事件对象--------------------</p>
     <div class="app03">事件对象</div>
+
+
+    <p>事件对象：阻止默认行为--------------</p>
+    <a href="https://www.baidu.com" id="app04">阻止默认行为</a>
+
+    <p>事件对象：阻止事件冒泡--------------</p>
+    <div class="app05">
+        <div class="app05_son">阻止事件冒泡</div>
+    </div>
+
+    <p>事件对象：事件委托--------------</p>
+
+    <ul class="app06">
+        <li>利用冒泡原理，给每个小li设置点击事件</li>
+        <li>利用冒泡原理，给每个小li设置点击事件</li>
+        <li>利用冒泡原理，给每个小li设置点击事件</li>
+        <li>利用冒泡原理，给每个小li设置点击事件</li>
+        <li>利用冒泡原理，给每个小li设置点击事件</li>
+        <li>利用冒泡原理，给每个小li设置点击事件</li>
+    </ul>
+
+
+    <p>禁止选中------------------------</p>
+    <div class="app07">
+        <p>反悔啊回复第啊师傅欸哦请回复欸我去回复返回杜塞哦防护到1符合度爱好吃大户分</p>
+    </div>
+
+
+    <p>鼠标移动事件：跟随小天使---------------------</p>
+    <div class="app08"></div>
+
+
+    <p>键盘事件------------------------</p>
+
+
+
 
 
 
@@ -108,7 +151,7 @@
             this.onclick = null;  // 传统方式解绑
          }
 
-        //  新方法 removeEventListener()
+        //  新方法 removeEventListener(事件类型，对应函数名)
         app01[1].addEventListener('click', fn); // 最好不要用匿名函数
 
         function fn(){
@@ -163,7 +206,94 @@
         }
         app03.addEventListener('click', function (event) { 
             console.log(event);
+            console.log(event.target); // 返回 触发 事件的对象 
+            console.log(event.srcElement); // 返回 触发 事件的对象
+            console.log(event.type); // 返回事件的 类型， 比如click mouseover 不带 on | 不同于this this是一个对象
+            event.cancelBubble; // 该属性阻止冒泡 非标准
+            event.returnValue; // 该属性阻止默认事件
+            event.preventDefault() // 该方法阻止默认事件
+            event.stopPropagation() // 阻止冒泡
         },)
+
+// 事件对象 -- 阻止默认行为
+        // 让该发生的事件不发生，比如跳转 变为不跳转， 提交按钮不提交
+        var app04 = document.querySelector('#app04')
+        app04.addEventListener('click',function (e) { 
+            e.preventDefault(); // 方法1: 调用事件对象 preventDefault（）
+            e.returnValue; // 方法2：调用事件对象 属性
+            return false // 方法3 
+         })
+
+// 事件对象 -- 阻止事件冒泡
+         var app05_father = document.querySelector('.app05')
+         var app05_son = document.querySelector('.app05_son')
+         app05_father.addEventListener('click',function(e) { 
+             alert('父亲')
+        })
+        app05_son.addEventListener('click', function(e) { 
+             alert('孩子')
+             e.stopPropagation(); // 方法1
+             e.cancelBubble = true; // 方法2  - 兼容较老版本
+        })
+
+// 事件对象 -- 事件委托
+        // 不是每个子节点单独设置事件监听，而是在父级事件监听器上设置，利用 冒泡原理 印象到每个子节点
+        var app06 = document.querySelector('.app06')
+        app06.addEventListener('click', function (e) { 
+            alert('事件委托')
+            e.target.style.backgroundColor = 'red'
+         })
+
+// 禁止选中文字 和 禁止右键
+        var app07 = document.getElementsByClassName('app07')[0].getElementsByTagName('p')[0]
+        // 禁止复制
+        app07.addEventListener('selectstart', function(e) { 
+            alert('禁止复制')
+         })
+        
+        // 取消右键
+        document.addEventListener('contextmenu',function(e) { 
+            // e.preventDefault();
+         })
+
+// 鼠标 及 键盘 事件对象
+        //  鼠标 坐标
+         document.addEventListener('click', function(e) { 
+             console.log(e.clientX); // 鼠标相对于浏览器窗口的 X轴 
+             console.log(e.clientY); // 鼠标相对于浏览器窗口的 Y轴 
+             console.log(e.pageX); // 鼠标相对于文档页面的 X轴
+             console.log(e.pageY); // 鼠标相对于文档页面的 Y轴
+             console.log(e.screenX); // 鼠标相对于电脑屏幕的 X轴
+             console.log(e.screenY); // 鼠标相对于电脑屏幕的 Y轴
+        })
+
+        // mouserover 和 mouserenter 区别：
+            // 1.mouseover 经过元素自身会触发，经过子盒子也会触发
+            // 2.mouseenter 经过元素自身才会触发
+        
+        // mousedown 和 mouseup  鼠标按下 鼠标抬起
+
+        // 鼠标移动事件
+        var app08 = document.querySelector('.app08')
+        document.addEventListener('mousemove', function(e){ 
+            app08.style.top = e.clientY - 3 + 'px'; // 注意固定定位的坐标 必须加 px
+            app08.style.left = e.clientX - 3 + 'px';
+        })
+
+        // 键盘
+            // 1.keyup 键盘弹起的时候 反之  
+            //   keydown 键盘按下的时候，执行优先级最高
+        document.addEventListener('keyup',function(e){ 
+            console.log('键盘弹起');
+        }) 
+            // 2.onkeypress 也是键盘按下 但是不能识别功能键 比如 ctrl shift
+
+            // 3.keyCode 判断按下的值 返回ASCII码值
+        document.addEventListener('keydown',function(e){ 
+            console.log('键盘已经按下');
+            console.log(e.keyCode); // keydown 不支持区分大小写;  keypress 支持区分大小写
+        }) 
+
 
 
 

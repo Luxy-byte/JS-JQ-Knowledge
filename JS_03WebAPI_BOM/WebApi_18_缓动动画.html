@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+        // 缓动动画函数封装
+            var app01 = document.querySelector('.app01');
+            var app01Btn1 = document.querySelector('.app01_btn1')
+            var app01Btn2 = document.querySelector('.app01_btn2')
+
+            function animate(obj, target, callback){
+
+                clearInterval(obj.timer);
+
+                obj.timer = setInterval(function(e){  
+
+                    if(obj.offsetLeft == (target - 5)){
+                        obj.style.left = target + 'px';
+                        clearInterval(obj.timer);
+                        
+                        if(callback){callback();}; // 回调函数的使用
+                    };
+                // 步长值 ：目标值 - 现在的位置 / 10; Math.ceil 向上取整
+                // var step = Math.ceil((target - obj.offsetLeft) / 10);
+                var step = (target - obj.offsetLeft) / 10;
+
+                step = step > 0 ? Math.ceil(step) : Math.floor(step); // 当有两个按钮时 需要考虑元素移动的正负值
+
+                obj.style.left = obj.offsetLeft + step + 'px';
+                }, 50);
+            };
+
+            // 回调函数
+            function fn(){
+                app01.style.backgroundColor = 'green';
+            }
+
+            app01Btn1.addEventListener('click', function(){
+                    animate(app01, 500)
+            });
+            app01Btn2.addEventListener('click', function(){
+                    animate(app01, 800, fn)
+            });
+
+
+
+
+
+
+
+
+
+        }
+    </script>
+
+    <style>
+        *{margin: 0; padding: 0;}
+        .app01{width: 200px; height: 200px; background-color: red; position: relative;}
+
+    </style>
+</head>
+<body>
+    <!-- 缓动动画 -->
+        <!-- 改变动画的运动速度 -->
+        <!-- 
+            公式原理：
+            目标值 - 现在的位置 / 10;
+            第一次循环移动像素： (100 - 0 ) / 10 = 10px
+            第二次循环移动像素： (100 - 10) / 10 = 9px
+            第二次循环移动像素： (100 - 19) / 10 = 8.1px
+            .
+            .
+            .
+            移动距离逐步变小
+        -->
+        <div class="app01"></div>
+        <button class="app01_btn1">动画移动500</button>
+        <button class="app01_btn2">动画移动800</button>
+    
+</body>
+</html>

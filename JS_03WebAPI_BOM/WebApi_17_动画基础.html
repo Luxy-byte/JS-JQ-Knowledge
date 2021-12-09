@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            // 定时动画一
+            var app01 = document.querySelector('.app01');
+            var timer1 = setInterval(function(e){  
+
+                if(app01.offsetLeft >= 500){
+                    clearInterval(timer1)
+                }
+                app01.style.left = app01.offsetLeft + 20 + 'px';
+            }, 500);
+
+
+            // 封装动画函数
+            // （两个参数 动画对象 和 移动到的距离）
+            function animate(obj, target){
+
+                clearInterval(obj.timer); // 清楚以前的定时器，只保留一个定时器工作
+
+                obj.timer = setInterval(function(e){  // 给不同的元素 订制不同的定时器名称 使用对象属性的原理
+
+                if(obj.offsetLeft >= target){
+                    clearInterval(obj.timer)
+                }
+                obj.style.left = obj.offsetLeft + 20 + 'px';
+                }, 500);
+
+            };
+            // 调用函数
+            var app02 = document.querySelector('.app02');
+            animate(app02, 500)  // 如果重复调用 那么元素移动会加快，因为会生成多个 定时器
+
+
+        };
+    </script>
+    <style>
+        .app01{width: 200px; height: 200px;position: relative;background-color: cadetblue;}
+        .app02{width: 200px; height: 200px;position: relative;background-color: gray;margin-top: 10px;}
+
+    </style>
+</head>
+<body>
+    <!-- 动画原理 -->
+        <!-- 通过定时器 不断更新元素位置 从而形成动画效果 setinterval（） -->
+    <div class="app01"></div>
+    <div class="app02"></div>
+</body>
+</html>

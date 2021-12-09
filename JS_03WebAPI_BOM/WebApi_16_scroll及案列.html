@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+        // scroll
+            var app01 = document.querySelector('.app01')
+            console.log(app01.scrollHeight); // 199
+            console.log(app01.clientHeight); // 160
+            console.log(app01.offsetHeight); // 160
+
+            // scroll(onscroll) 事件
+            app01.addEventListener('scroll', function(e){
+                console.log(this.scrollTop);
+            });
+
+            // 案列：
+            var app02 = document.querySelector('.app02').querySelector('div')
+            var tmp = document.querySelector('.app02').querySelectorAll('li')[3]
+            document.addEventListener('scroll', function(e){
+                console.log(window.pageYOffset); // 页面被卷去的头部
+
+                if(window.pageYOffset > 400){
+                    tmp.style.display = 'block';
+                    app02.style.position = 'fixed';
+
+
+                }else if(window.pageYOffset < 400){
+                    tmp.style.display = 'none';
+                    app02.style.position = 'absolute';
+                };
+            })
+
+
+
+        }
+    </script>
+    <style>
+        .app01{margin: 0 auto;width: 150px;height: 150px;background: cadetblue;overflow: auto;border: 5px 5px;padding: 5px;}
+
+        .app02{margin: 0 auto;width: 100%;height: 250px;position: relative;}
+        .app02 ul{padding: 0; margin: 0; list-style: none;}
+        .app02 div{width:100px; height: 250px;background: cadetblue;position: absolute;top: 0;left: 0;}
+        .app02 li{width: 100%; height: 50px;text-align: center;line-height: 50px;}
+        .app03{width: 100%;height: 2000px;background: red;}
+
+    </style>
+</head>
+<body>
+    <!-- scroll -->
+
+        <!-- 
+            类名.scrollTop  - 被卷的 上侧距离
+            类名.scrollLeft - 被卷的 左侧距离
+            类名.scrollWidth - 实际内容的宽度 不含边框
+            类名.scrollHeight - 实际内容的高度 不含边框
+         -->
+
+        <div class="app01">
+            发的分解切片机发挥哦怕合肥回复饿我去胡腹黑完全破坏肥胖去复合物气氛户外求佛配起飞和武器飞虎缺乏撒旦撒积分两千分返回杜琪峰黑漆古维奇腹黑
+        </div>
+
+
+        <div class="app02">
+            <div>
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li style="display: none;" id="sasa">隐藏模块</li>
+                    <li>5</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="app03">
+        </div>
+
+
+    <!-- 
+        总结：
+        获取元素位置 offset
+        获取元素大小 client
+        获取滚动距离 scroll
+        页面滚动 - window.pageXOffset 获得
+     -->
+</body>
+</html>

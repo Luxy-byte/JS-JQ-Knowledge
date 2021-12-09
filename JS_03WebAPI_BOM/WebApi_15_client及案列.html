@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+        // client 属性
+            var app01 = document.querySelector('.app01')
+                // 1.和 offsetWidth最大的区别就是不包含 边框
+                // 2.包含 padding
+            console.log(app01.clientWidth, app01.offsetWidth); //(120, 140)
+            console.log(app01.clientTop); // 10
+
+        // 立即执行函数
+            // 1.写法一：
+            (function(a,b,c){
+                console.log('立即执行函数 方法一');
+                console.log(a,b,c);
+                console.log(event);
+            })(1,2,3);
+            // 2.写法二：
+            (function sum(a, b){
+                console.log('立即执行函数 方法二');
+                console.log(a,b);
+            }(10, 20));
+
+
+
+        }
+    </script>
+    <style>
+        .app01{
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+            border: 10px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- client -->
+        <!-- 动态获取元素的边框大小，元素大小等 -->
+        <!-- 
+            常用属性：
+            类名.clientTop  - 返回元素上边框大小
+            类名.clientLeft - 返回元素左边框大小
+            类名.clientWidth - 返回自身包括padding 内容区宽度 不含边框
+            类名.clientHeight - 返回自身包括padding 内容区宽度 不含边框
+         -->
+
+        <div class="app01"></div>
+    
+    <!-- 立即执行函数，不需要调用即可执行的函数 -->
+         <!-- 
+             优势：
+             最大的作用就是 独立创建了一个作用域，里面所有的变量均为局部变量，且执行完成立马释放内存空间 
+        -->
+    
+</body>
+</html>

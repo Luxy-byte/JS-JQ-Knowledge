@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){ 
+
+            var app01 = document.getElementById('app01')
+            document.addEventListener('keyup', function(e){  
+                if(e.keyCode === 83){
+                    // app01.focus();
+                }
+            })
+
+
+            var app02 = document.getElementById('app02')
+            var app02_content = document.querySelectorAll('div')[1]
+            app02.addEventListener('keyup',function(e){ 
+
+                app02_content.innerText = this.value
+
+            })
+
+        
+        
+        
+        
+        
+        
+        }
+    </script>
+
+    <style>
+        .test01{width: 300px; height: 100px; margin: 0 auto; border: 1px solid black; text-align: center;}
+        .test01 div{width: 250px; height: 50px; border: 1px solid black;margin: 0 auto;}
+    </style>
+</head>
+<body>
+
+    <span>搜索</span><input type="text" name="" id="app01">
+
+    <div class="test01">
+        <div></div>
+        <span>输入：</span><input type="text" name="" id="app02">
+
+
+
+    </div>
+
+</body>
+</html>

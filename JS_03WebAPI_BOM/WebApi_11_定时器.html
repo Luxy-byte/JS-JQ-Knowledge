@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){ 
+        // setTimeout() 切记加分号
+
+            function fn(e){ 
+                alert('hello world')
+            }
+            var timer1 = setTimeout(fn, 1000)
+            var timer1 = setTimeout(fn, 3000)  // 单位为毫秒 1000毫秒 = 1秒，默认0
+
+            // 案列1 - 广告消失
+            var app01 = document.querySelector('.app01')
+            function fn2(e){  
+                app01.style.display = 'none'
+            }
+            var timer2 = setTimeout(fn2, 8000)
+
+            // 停止定时器 - clearTimeout（timeID）
+            var timer2_btn = document.querySelector('.app01_btn')
+            timer2_btn.addEventListener('click',function(){  
+                clearTimeout(timer2); // 停止广告消失
+            })
+
+
+        // setinterval(); 切记加分号
+
+            var timer3 = setInterval(function(e){  
+                console.log(new Date());
+            }, 10000); // 间隔10秒 输出一次
+
+            // 案列2 - 倒计
+            var app02 = document.querySelector('.app02')
+
+            var day = app02.children[1].children[0];
+            var hours = app02.children[1].children[1];
+            var minutes = app02.children[1].children[2];
+            var seconds = app02.children[1].children[3];
+
+            var my_time = +new Date('2022-02-01')
+            
+            countDown() // 提前加载一次解决刷新 空白的问题
+
+            // var timer4 = setInterval(countDown, 1000);
+
+            function countDown(e) { 
+
+                var times = Math.abs((+new Date()) - my_time) / 1000
+
+                var day_t = parseInt(times / 60 / 60 / 24)
+                day.innerHTML = day_t
+                var hours_t = parseInt(times / 60 / 60 % 24)
+                hours.innerHTML = hours_t
+                var minutes_t = parseInt(times / 60 % 60)
+                minutes.innerHTML = minutes_t
+                var seconds_t = parseInt(times % 60)
+                seconds.innerHTML = seconds_t
+
+                console.log(day_t + "天" + seconds_t + "秒");
+             }
+
+
+            var timer5 = null; // 全局变量用于传递定时器
+            var app02_btn_start = app02.children[3];
+            app02_btn_start.addEventListener('click', function(e){  
+                timer5 = setInterval(countDown, 1000);
+            })
+
+
+            // 停止定时器 - clearinterval（timeID）
+            var app02_btn_stop = app02.children[2]
+            app02_btn_stop.addEventListener('click', function(e){  
+                clearInterval(timer5)
+            })
+        
+
+        }
+    </script>
+    <style>
+        .app01{margin: 0 auto; width: 100px; height: 100px;}
+        ul{margin: 0; padding: 0; list-style: none;}
+        .app02{margin: 0 auto; width: 200px; height: 100px; border: 1px solid black;}
+        .app02 li{font-size: 18px; display: inline-block; width: 21%; margin-left: 2px; background-color: cadetblue; text-align: center;}
+    </style>
+</head>
+<body>
+    <!-- window 定时器：setTimeout() | setinterval() -->
+
+
+        <!-- 1. setTimeout(调用函数，延时事件) -->
+            <!-- 
+                注意：
+                1.window可以省略
+                2.这个调用函数可以直接写函数，或者写函数名 或者 采取字符串“函数名（）”三种形式
+                3.延迟的毫秒数默认为 0， 必须写毫秒单位
+                4.每一个定时器最好取一个名字 方便管理
+             -->
+
+        <div class="app01">8秒自动消失广告</div>
+        <button class="app01_btn">clearTimeout</button>
+
+
+        <!-- 2.setinterval(调用函数，[延时秒数]) -->
+
+        <div class="app02">
+            <span>新年倒计时：</span>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+            <button>停止</button>
+            <button>继续</button>
+        </div>
+
+        <!-- 
+            主要区别： 
+            setinterval（） 是 循环执行
+            setTimeout（） 是 执行一次
+         -->
+    
+</body>
+</html>

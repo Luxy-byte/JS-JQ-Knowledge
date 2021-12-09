@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- this指向问题 -->
+        <!-- 
+            1.全局作用时 指向 window
+            2.方法调用中 指向 对象
+            3.构造函数中 指向 实列
+         -->
+
+
+    <!-- js同步或异步 -->
+         <!-- 单线程语言，同一时间只能做一件事情 -->
+
+         <!-- 同步：按照排列顺序执行，先A后B -->
+         <!-- 异步：不管排列同时执行，AB一起 -->
+
+
+         <!-- 同步任务： 任务都在主线程上，形成一个执行栈， 比如 console.log(), var = 10, setTimeout(fn,0) -->
+         <!-- 异步任务： 任务都在同时执行，放入 任务队列，比如：普通事件（click resize），资源加载（load error），定时器 -->
+
+         <!-- 
+             执行顺序：
+             1. 先执行 执行栈 中的同步任务
+             2. 异步任务(回调函数)放入任务队列中
+             3.一旦 执行栈 中的任务执行完成，就按次序读取任务队列，并且加载到执行栈 开始执行
+         -->
+
+    <!-- 事件循环 -->
+         <!-- 主线程不断从 任务队列 获取任务 执行任务的过程 -->
+
+    
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+// 窗口加载事件：
+
+        // 方法一，当文档内容完全加载完成以后才会触发该事件
+        window.onload = function(){
+            // 1.事件写在里面
+            // 2.只能写一次
+            var btn = document.querySelector('button')
+            btn.addEventListener('click', function(){
+                alert('hello world')
+            })
+        
+        // 方法二
+        // window.addEventListener('load', function(){
+
+        // })
+
+        // 方法二
+        // document.addEventListener('DOMContentLoaded', function(){
+
+        // })
+
+        // 总结：
+            // load 是等页面内容全部加载完毕，包含页面dom元素 图片 flash 等等...
+            // DOMContentLoaded 不包含图片 flash music 只包含主要标签元素，显示速度会更快 量级更轻
+
+        }
+
+        // 监控窗口变化 innerWidth 宽度  innerHeigh 高度
+        window.addEventListener('resize', function(){
+            console.log(window.innerWidth, window.innerHeight);
+            console.log('窗口变化了');
+        })
+
+    </script>`
+</head>
+<body>
+    <!-- BOM -->
+        <!-- 浏览器对象模型，提供了独立于内容而与浏览器窗口进行交互的对象，核心是 window -->
+        <!-- window包含：document(DOM)，location，navigation，screen，history -->
+        <!-- 
+            window对象是浏览器的顶级对象，具有双重角色
+
+            1. JS访问浏览器窗口的一个接口
+            2. 它是一个全局对象。 定义在全局作用域中的函数 变量都会变成 window 对象的属性和方法
+         -->
+
+    <button>点击</button>
+
+    <div></div>
+
+    <script>
+        // 顶级对象 window
+        var num = 10;
+        console.log(window.num);  // 变量属于 window
+
+        function fn(){ alert('hello')} // 方法属于 window
+        window.fn()
+
+        console.dir(window)
+
+
+    </script>
+</body>
+</html>

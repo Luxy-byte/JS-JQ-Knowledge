@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+
+            // location 属性跳转
+            // 案列：跳转
+            // var timer = setTimeout(function(e){ 
+            //     location.href = 'https://www.baidu.com';
+            //  }, 3000);
+
+            // location 方法跳转
+            var app02 = document.querySelector('.app02');
+            app02.addEventListener('click',function(e){  
+                location.assign('https://www.baidu.com')
+            })
+
+            // navigator 读取用户使用什么设备打开页面
+            console.log(navigator.userAgent);
+            
+
+
+
+        }
+    </script>
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- location -->
+        <!-- 用于获取window的url，并且可以解析url -->
+        <!-- 
+            常用属性：
+            location.href - 返回url 
+            location.host - 返回域名
+            location.port - 返回端口号
+            location.pathname - 返回路劲
+            location.search - 返回参数
+            location.hash - 返回片段
+        -->
+         <form method="get" action="./html_test/index.html">
+            <span>用户名：</span>
+            <input type="text" name="username" id="app01">
+            <input type="submit" value="登录" class="app01_btn">
+        </form>
+        <!-- 
+            常用方法：
+            location.assign(url) - 跳转网站, 会生成历史记录 
+            location.replace(url) - 跳转网站，不会生成历史记录
+            location.reload() - 重新加载页面 等于 刷新
+        -->
+        <button class="app02">方法跳转</button> 
+    
+
+    <!-- navigator -->
+        <!-- 包含有关浏览器的信息，有许多属性，最常用的是userAgent，可以知道用户使用什么设备打开的页面 -->
+
+    <!-- history -->
+        <!-- 主要是与浏览器的历史记录进行交互，包括了所有访问过的url地址 -->
+        <!-- 
+            常见方法：
+            history.back() - 后退
+            history.forward() - 前进
+            go() - 前进后退功能， 参数为 - 1 或者-1 ，1为前进1页 -1为后退一页
+         -->
+    
+</body>
+</html>

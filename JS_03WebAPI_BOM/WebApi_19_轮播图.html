@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+
+        // 1.轮播图变量准备
+            var app01 = document.querySelector('.app01');
+            var picLeft = document.querySelector('#pic_left');
+            var picRight = document.querySelector('#pic_right');
+            var picChoose = document.querySelector('.pic_choose');
+            var images = document.querySelector('.app01').querySelectorAll('img');
+        
+        // 2.缓动动画函数封装
+            function animate(obj, target, callback){
+                clearInterval(obj.timer);
+
+                obj.timer = setInterval(function(e){  
+
+                    if(obj.offsetLeft == target){
+                        obj.style.left = target + 'px';
+                        clearInterval(obj.timer);
+                        
+                        
+                    };
+                    if(callback){callback();};
+                var step = (target - obj.offsetLeft) / 10;
+
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+
+                obj.style.left = obj.offsetLeft + step + 'px';
+                }, 50);
+
+            };
+
+        // 3.移入的时候 显示点击按钮
+            app01.addEventListener('mouseover', function(){
+                picLeft.style.display = 'block';
+                picRight.style.display = 'block';
+
+                // 鼠标移入 定时器清楚
+                clearInterval(timer)
+                timer = null; 
+            });
+            app01.addEventListener('mouseout', function(){
+                    picLeft.style.display = 'none';
+                    picRight.style.display = 'none';
+
+                // 鼠标移开定时器 开启
+                timer = setInterval(function(){
+                    // 自动调用点击事件
+                    picLeft.click()
+                },1000)
+
+            });
+
+        // 4.动态生成小圆点  - 根据图片数量生成
+            for(var i = 0; i < images.length; i++){
+                var li = document.createElement('li');
+                picChoose.appendChild(li);
+            };
+            picChoose.children[0].style.backgroundColor = 'orange';
+
+        // 5.小圆圈点击效果  - 排他思想
+            for(var i = 0; i < picChoose.children.length; i++){
+
+                // 1.给每个校园附着属性
+                picChoose.children[i].setAttribute('data-index',i)
+                // 2.给每个小圆点增加点击事件
+                picChoose.children[i].addEventListener('click',function(){
+                    for(var k = 0; k < picChoose.children.length; k++){
+                        picChoose.children[k].style = 'background: none'
+                    };
+                    this.style.backgroundColor = 'orange';
+                    var move_num = parseInt(this.getAttribute('data-index'));
+                    clickTimes = move_num // 点击小圆圈后需要把值赋给num，这样才能按键同步
+                    // picChoose.children[num].style.backgroundColor = 'orange';
+                // 3.每个小圆圈点击的时候 调用 父类 ul 的 animate 方法
+                    animate(images[move_num].parentNode.parentNode.parentNode, (move_num * (-app01.clientWidth)));
+                })
+            }
+
+
+            var ulImage = document.querySelector('.app01_images')
+
+        // 6.通过克隆 在ul中增加相同图片  cloneNode() - 复制节点| true 深克隆 false 浅克隆
+            var tmpLi = ulImage.children[0].cloneNode(true)
+            ulImage.appendChild(tmpLi)
+
+
+        // 7.左右按钮点击事件
+                // 1.赋值ul 第1个li 到最后，事件滚动效果时的 头尾切换
+            var clickTimes = 0; // 定义全局变量用于统计点击次数
+            var flag = true; // 节流阀开关
+            picLeft.addEventListener('click', function(){
+
+                // flag = false; // 关闭节流阀
+                console.log(clickTimes);
+                if(clickTimes == (images.length)){
+                    ulImage.style.left = 0;
+                    clickTimes = 0;
+                };
+                clickTimes++;
+                console.log(ulImage,(-clickTimes * app01.clientWidth));
+                animate(ulImage,(-clickTimes * app01.clientWidth)); // 回调函数在打开
+                
+
+            });
+            picRight.addEventListener('click', function(){
+                console.log(clickTimes);
+                if(clickTimes == -(images.length)){
+                    ulImage.style.left = 0;
+                    clickTimes = 0;
+                }
+                clickTimes--;
+                animate(ulImage,(clickTimes * app01.clientWidth));
+
+            })
+
+        // 8.自动播放
+            var timer = setInterval(function(){
+                // 自动调用点击事件
+                picLeft.click()
+            },2000)
+            
+
+
+        
+
+        };
+    </script>
+
+    <style>
+        *{margin: 0; padding: 0;}
+        .app01{width: 800px; height: 500px; margin: 100px auto; border: 1px solid black;position: relative; overflow: hidden;}
+        .app01 i{font-size: 50px; position: absolute; display: block;z-index: 999; width: 30px; height: 30px;}
+        .app01 i:first-child{top: 225px; left: 20px;}
+        .app01 i:nth-child(2){top: 225px; right: 20px;}
+        .pic_choose{position: absolute; margin: 0; padding: 0; list-style: none; display: block; top: 460px; left: 50px;cursor: pointer;z-index: 999;}
+        .pic_choose li{display: inline-block; margin-left: 5px;width: 8px; height: 8px; border: 1px solid black; border-radius: 5px;}
+
+        /* 注意： 一定要将 ul 设置成 block 且 宽大于父级数倍，子元素小li 才能浮动为一行 */
+        .app01_images{margin: 0; padding: 0; list-style: none; position: absolute;top: 0; left: 0px; width: 600%; height: 100%; display: block;}
+        .app01_images li{width: 800px; height: 500px; float: left;}
+
+        .app01_images img{width: 100%;height: 100%;}
+
+
+    </style>
+</head>
+<body>
+
+    <div class="app01">
+        <i class="fa fa-chevron-circle-left" id="pic_left" style="display: none;"></i>
+        <i class="fa fa-chevron-circle-right" id="pic_right" style="display: none;"></i>
+
+        <ul class="pic_choose">
+        </ul>
+
+        <u class="app01_images">
+            <li>
+                <a href="javascript:"><img src="./images/pic1.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="javascript:"><img src="./images/pic2.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="javascript:"><img src="./images/pic3.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="javascript:"><img src="./images/pic4.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="javascript:"><img src="./images/pic5.jpg" alt=""></a>
+            </li>
+        </u>
+
+    </div>
+
+
+    <!-- 节流阀 -->
+        <!-- 让每一个函数执行完成以后， 才去继续执行下一个函数，让事件无法 连续触发 -->
+        <!-- 利用回调函数 -->
+        <!-- 
+            1.设置一个变量 flag = true
+            2.if（flag）{} 锁定函数
+            3.回调完毕 flag = true 释放函数 继续下一个
+         -->
+    
+</body>
+</html>
