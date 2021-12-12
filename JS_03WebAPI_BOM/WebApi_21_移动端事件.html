@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+        // touch 常用事件
+            var app01 = document.querySelector('.app01');
+            app01.addEventListener('touchstart',function(){
+                this.style.backgroundColor = 'red';
+            });
+            app01.addEventListener('touchmove',function(){
+                this.style.backgroundColor = 'green';
+            });
+            app01.addEventListener('touchend',function(){
+                this.style.backgroundColor = 'cadetblue';
+            });
+        
+
+        // touchstar touchmove touchend 实现元素拖拽
+            // 原理： 盒子原来的位置 + 手指移动的距离
+
+
+            var app02 = document.querySelector('.app02')
+
+            var startX = 0; // 手指初始坐标
+            var startY = 0;
+
+            var x = 0; // 获得盒子原来的位置
+            var y = 0;
+
+            app02.addEventListener('touchstart',function(e){
+                startX = e.targetTouches[0].pageX;
+                startY = e.targetTouches[0].pageY;
+                x = this.offsetLeft;
+                y = this.offsetTop;
+                console.log(startX,startY,x,y);
+            })
+
+            app02.addEventListener('touchmove',function(e){
+                var moveX = e.targetTouches[0].pageX - startX;
+                var moveY = e.targetTouches[0].pageY - startY;
+                console.log(x + moveX, y + moveY);
+                app02.style.left = x + moveX + 'px';
+                app02.style.top = y + moveY + 'px';
+                // e.preventDefault();
+
+            })
+            // 注意：手指移动也会触发滚动屏幕 所以要阻止 默认滚动屏幕 ： 类.preventDefault()
+
+
+
+        
+        
+        
+            
+        };
+    </script>
+    <style>
+        .app01{
+            width: 100px;
+            height: 100px;
+            background-color: cadetblue;
+            margin: 0 auto;
+        }
+        .app02{
+            width: 50px;
+            height: 50px;
+            background-color: brown;
+            margin: 10px auto;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- 触摸事件 touch -->
+    <!-- 
+        常用事件：
+        touchstart - 手指触摸到DOM元素 触发
+        touchmove - 手指滑动DOM元素 触发
+        touchend - 手指移开DOM元素 触发
+     -->
+     <div class="app01">touchstart</div>
+
+     <!-- 触摸事件对象 touchevent -->
+     <!-- 
+         常用属性：
+         touches - 正在触摸屏幕的手指数量
+         targetTouches - 正在触摸当前DOM元素的手指列表
+         changedTouches - 手指状态发生了改变的列表， 从无到有，从有到无
+      -->
+
+    <div class="app02"></div>
+    
+</body>
+</html>

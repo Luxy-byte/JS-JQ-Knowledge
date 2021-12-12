@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            // window.sessionStrorage 会话存储
+            var app01 = document.querySelector('#app01')
+            var btn = document.querySelectorAll('.app01btn')
+
+            btn[0].addEventListener('click', function(){
+                var val = app01.value;
+                sessionStorage.setItem('uname',val); // 存储
+            })
+
+            btn[1].addEventListener('click', function(){
+                console.log(sessionStorage.getItem('uname'));  // 获取
+            })
+
+            btn[2].addEventListener('click', function(){
+                console.log(sessionStorage.removeItem('uname')); // 删除
+            })
+
+            btn[3].addEventListener('click', function(){
+                sessionStorage.clear(); // 清楚所有
+            })
+
+            // window.localStrorage 本地存储
+            var app02 = document.querySelector('#app02')
+            var btn2 = document.querySelectorAll('.app02btn')
+
+
+            btn2[0].addEventListener('click', function(){
+                var val = app02.value;
+                localStorage.setItem('app02',val); // 存储
+            })
+
+            btn2[1].addEventListener('click', function(){
+                console.log(localStorage.getItem('app02'));  // 获取
+            })
+
+            btn2[2].addEventListener('click', function(){
+                console.log(localStorage.removeItem('uname')); // 删除
+            })
+
+            btn2[3].addEventListener('click', function(){
+                localStorage.clear(); // 清楚所有
+            })
+
+        }
+    </script>
+</head>
+<body>
+    <!-- 用户数据存储： -->
+        <!-- window.sessionStorage  5M的空间 -->
+            <!-- 1.生命周期为关闭浏览器窗口 -->
+            <!-- 2.同一个窗口数据可以共享 -->
+            <!-- 3.以 键值对 形式存储使用 -->
+            <!-- 
+                4.语法：
+                seesionStorage.setItem(key, value) 
+            -->
+
+        <input type="text" name="app01" id="app01">
+        <button class="set app01btn">存储</button>
+        <button class="get app01btn">获取</button>
+        <button class="remove app01btn">删除</button>
+        <button class="del app01btn">清空</button>
+
+        <!-- window.localStorage  20M的空间 -->
+            <!-- 1.生命周期为 永久 -->
+            <!-- 2.多窗口共享 -->
+            <!-- 3.以 键值对 形式存储使用 -->
+
+        <input type="text" name="app02" id="app02">
+        <button class="set app02btn">存储</button>
+        <button class="get app02btn">获取</button>
+        <button class="remove app02btn">删除</button>
+        <button class="del app02btn">清空</button>
+
+    <!-- 1.数据存储在浏览器中 -->
+    <!-- 2.容量为 5M 和 20M -->
+    <!-- 3.只能存储字符串， 可以将对象 JSON.stringFy()编码后存储 -->
+    
+</body>
+</html>

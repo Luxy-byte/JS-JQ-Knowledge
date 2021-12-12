@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            // 1.获取元素
+            var RnPic = document.querySelector('.runningPic');
+            var ul = RnPic.children[0];
+            var ol = RnPic.children[1];
+            // 2.获取移动宽度
+            var w = RnPic.offsetWidth;
+            console.log(w);
+
+            var index = 0;
+
+            var timer = setInterval(function(e){  
+                index++;
+                var translatex = -index * w;
+                ul.style.transition = "all 0.3s";
+                ul.style.transform = "translateX(" + translatex +"px)";
+            }, 2000)
+
+            // 需要过度完成以后 再去判断 。 监听过度完成的事件方法： transitionend
+            ul.addEventListener('transitionend',function(){
+                if(index >= 3){
+                    index = 0
+                    ul.style.transition = 'none';
+                    var translatex = -index * w;
+                    ul.style.transform = "translateX(" + translatex +"px)";
+                }else if(index < 0){
+                    index = 2;
+                    ul.style.transition = 'none';
+                    var translatex = -index * w;
+                    ul.style.transform = "translateX(" + translatex +"px)";
+
+                }
+
+                // 小圆点变化
+                ol.querySelector('li.current').classList.remove('current')
+                ol.children[index].classList.add("current")
+
+            })
+
+            // 小圆点变化
+                // classList属性，可以讲所有类名 存储在数组内
+                    // 添加类名： 类名.classList.add('新类名')  -- 在后面追加 且 不覆盖
+                    // 移除类名： 类名.classList.remove('类名') -- 移除指定的类名
+                    // 切换类名： 类名.classList.toggle('类名') -- 添加和移除之间 反复切换
+
+            // 4.手指滑动
+            var startX = 0;
+            var startY = 0;
+            var x = 0;
+            var y = 0;
+            var moveX = 0;
+            var flag = false; // 节流阀功能
+
+
+            ul.addEventListener('touchstart',function(e){
+                startX = e.targetTouches[0].pageX;
+                x = this.offsetLeft;
+                clearInterval(timer);
+            })
+            ul.addEventListener('touchmove',function(e){
+                moveX = e.targetTouches[0].pageX - startX;
+                var translatex = -index * w + moveX;
+                console.log(translatex);
+                ul.style.transition = 'none';
+                ul.style.transform = "translateX(" + translatex +"px)";
+                flag = true; // 节流阀打开
+                e.preventDefault(); // 防止拖动
+            })
+            ul.addEventListener('touchend',function(e){
+                // 如果移动距离大于50px在做处理
+                if(Math.abs(moveX) >= 50){
+                    if(moveX > 0){
+                        index--;
+                    }else{
+                        index++;
+                    }
+                    console.log(moveX);
+                    var translatex = -index * w;
+                    ul.style.transition = "all 0.3s";
+                    ul.style.transform = "translateX(" + translatex +"px)";
+                }else{
+                    // 小于就回弹
+                    var translatex = -index * w;
+                    ul.style.transition = "all 0.3s";
+                    ul.style.transform = "translateX(" + translatex +"px)";
+                }
+
+                clearInterval(timer)
+                var timer = setInterval(function(e){  
+                    index++;
+                    var translatex = -index * w;
+                    ul.style.transition = "all 0.3s";
+                    ul.style.transform = "translateX(" + translatex +"px)";
+                }, 2000)
+            })
+
+
+            // 返回顶部
+            var btn = document.querySelector('.app02')
+            btn.addEventListener('scroll',function(){
+                console.log(11);
+                window.scroll(0,0)
+            })
+
+            
+
+            
+
+
+
+
+        };
+    </script>
+    <style>
+        *{margin: 0;padding: 0;}
+        .runningPic{
+            width: 100%;
+            height: 300px;
+            background-color: gray;
+            position: relative;
+            /* overflow: hidden; */
+        }
+        .runningPic ul{width: 500%;height: 100%;display: block;position: relative;top: 0;left: 0; margin-left: -100%;}
+        .runningPic ul li{width: 20%;height: 100%;display: block;float: left;}
+        .runningPic ul img{width: 100%;height: 100%;}
+
+        .runningPic ol{padding: 0;margin: 0;list-style: none;position: absolute;bottom: 15px;right: 15px;}
+        .runningPic ol li{float: left;width: 10px;height: 10px;border: 1px solid black;margin-left: 5px;border-radius: 5px;}
+        .current{width: 15px!important;background-color: wheat;}
+
+        .hello{width: 100%;height: 2000px;}
+
+    </style>
+</head>
+<body>
+    <div class="runningPic">
+        <ul>
+            <li><a><img src="./images/pic3.jpg" alt=""></a></li>
+            <li><a><img src="./images/pic1.jpg" alt=""></a></li>
+            <li><a><img src="./images/pic2.jpg" alt=""></a></li>
+            <li><a><img src="./images/pic3.jpg" alt=""></a></li>
+            <li><a><img src="./images/pic1.jpg" alt=""></a></li>
+        </ul>
+        <ol>
+            <li class="current"></li>
+            <li></li>
+            <li></li>
+        </ol>
+    </div>
+
+    <div class="hello">123</div>
+    <button class="app02">返回顶部</button>
+    
+</body>
+</html>

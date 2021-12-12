@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/fastclick.js"></script>
+    <script>
+        window.onload = function(){
+
+            // 方法二：封装tap 解决click延时问题
+            function tap(obj, callback){
+                var isMove = false;
+                var startTime = 0;
+                obj.addEventListener('touchstart',function(e){
+                    startTime = Date.now();
+                })
+                obj.addEventListener('touchmove',function(e){
+                    isMove = ture;
+                })
+                obj.addEventListener('touchend',function(e){
+                    if(!isMove && (Date.now() - startTime) < 150){ //手指触摸时间小于150ms算点击事件
+                        callback && callback(); // 立即执行回调函数
+                    }
+                    isMove = false; // 重置
+                    startTime = 0;
+                })
+            }
+            // tap(div, function(){  }) 调用
+
+
+            // 方法三：引入fastclick
+            if('addEventListener' in document){
+                document.addEventListener('DOMContentLoaded', function(){
+                    FastClick.attach(document.body);
+                }, false);
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- click延时解决方案 -->
+        <!-- 1.方案一：禁止用户缩放 -->
+            <!-- <meta name="viewport" content="user-scalable=no "> -->
+
+        <!-- 2.方案二：封装touch方法 -->
+
+        <!-- 3.方案三：faskclick插件 -->
+    
+</body>
+</html>
