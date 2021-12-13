@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入 -->
+    <script src="./js/jquery3.min.js"></script>
+    <script>
+        // 写法一：
+        $(function(){
+            $('.app01').hide();
+
+
+        // jquery对象 和 DOM对象
+                // DOM对象
+            var app01 = document.querySelector('div');
+            console.dir(app01);
+                // JQ对象
+            $('.app01'); 
+            console.dir($('div'));
+
+            // 注意 JQ对象 和 DOM对象 属性和方法 不一致，需要各自用各自的方法和属性
+        });
+        // 写法二：
+        // $(document).ready(function(){
+        //     ....内容
+        // })
+
+    </script>
+
+    <style>
+        .app01{width: 200px;height: 200px;background-color: brown;}
+    </style>
+</head>
+<body>
+    <!-- jquery -->
+        <!-- JS库：library是一个封装好的特定的集合。 -->
+        <!-- 一个快速 简介的 js 库，称为jquery -->
+        <!-- 
+            优势：
+            1.轻量级, 核心文件几十kb
+            2.跨浏览器兼容
+            3.链式编程,隐式迭代
+            4.对事件，样式，动画支持，简化了DOM操作
+            5.支持插件扩展开发
+            6.开源
+         -->
+         <!-- 
+             下载地址：https//:www.jquery.com
+          -->
+        <div class="app01">app01</div>
+
+        <!-- jquery 等待页面加载完成两种写法 -->
+          <!-- 等于：DOMContentLoaded -->
+
+    <!-- jquery顶级对象: $ -->
+          <!-- 
+              1. $ 是 jquery 的别称，在开发当中可以使用 jquery 替代 $.
+              2. $ 是 jquery 的顶级对象，当相于原生js的window 
+           -->
+
+    <!-- jquery对象 和 DOM对象 -->
+           <!-- 1.jquery其本质是 利用 $对DOM对象包装后产生的对象（伪数组形式存储） -->
+           <!-- 2.jquery对象只能使用 jquery 方法， DOM对象只能使用原生JS属性和方法 -->
+
+    <!-- jquery对象 转换 DOM对象 -->
+           <!-- 1.DOM转jq对象： $('DOM对象') -->
+           <!-- 2.jq对象转DOM对象：$('div')[index] | $('div').get(index) index为索引号 -->
+
+
+    
+</body>
+</html>

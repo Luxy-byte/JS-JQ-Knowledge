@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery3.min.js"></script>
+    <script>
+        $(function(){
+
+            console.log($('.app01'));
+            console.log($('ul li'));
+
+            // 隐式迭代
+            console.log($('ol li'));
+            $('ol li').css('background','red') // jq隐式迭代会自动循环内部DOM元素
+
+            // 筛选选择器
+            $('ol li:first').css('font-size','24px')
+            $('ol li:eq(3)').css('color','green')
+
+
+            $("ul .test01").siblings('li').css('background','gray')
+
+            // 下拉案列
+            $('.app02').mousemove(function(){ // 鼠标经过
+                // $(this) 当前元素
+                $(this).children('ul').show(); // 显示
+
+            });   
+            $('.app02').mouseout(function(){
+                $(this).children('ul').hide(); // 隐藏
+
+            });
+
+            // 排他思想
+            $('.app03 button').click(function(){
+                // 把所有兄弟的背景颜色改为空
+                $(this).siblings('button').css("background",'');
+                $(this).css('background','red');
+            });
+
+            // 淘宝案列
+            $('.app04 ul li').mouseover(function(){
+                $(this).css('background','red');
+            });
+            $('.app04 ul li').mouseout(function(){
+                $(this).css('background','')
+            })
+            $('.app04 ul li').click(function(e){
+                var num = $(this).index() // 得到对应的索引号
+                $('.app04_content div').eq(num).siblings().hide();
+                $('.app04_content div').eq(num).show();
+
+            });
+
+
+
+
+        });
+    </script>
+    <style>
+        .app02{width: 100px;height: 50px;border: 1px solid black;margin: 0 auto;position: relative;}
+        .app02 a{width: 100%;height: 100%;text-align: center;line-height: 50px;display: block;text-decoration: none; color: black;}
+        .app02 ul{display: none;padding: 0;margin: 0; list-style: none;position: absolute; top: 51px;left: -1px;}
+        .app02 ul li{width: 100px; height: 50px; border: 1px solid black;text-align: center;display: block;line-height: 50px;}
+        .app03 button{width: 70px;height: 20px;}
+
+        .app04{width: 500px;height: 300px;margin: 0 auto;border: 1px solid black;}
+        .app04 ul{width: 20%;height: 300px;margin: 0;padding: 0;list-style: none;float: left;}
+        .app04 ul li{width: 100%;height: 10.8%;text-align: center;line-height: 20px;border-right: 1px solid black;border-bottom: 1px solid black;cursor: pointer;}
+        .app04_content{width: 80%;height: 300px;float: left;position: relative;}
+        .app04_content div{display: none; position: absolute; top: 0; left: 0;width: 100%;height: 100%;}
+        .app04_content div a{display: block;height: 100%;width: 100%;text-align: center;line-height: 300px;}
+        .app04_content div:first-child{display: block;}
+    </style>
+</head>
+<body>
+    <!-- jq选择器 -->
+        <!-- 
+            语法：$('选择器')  即为css选择器 但需要加引号
+        -->
+        <!-- 
+            列：
+            1.$('id')         - 获取指定ID元素
+            2.$('*')          - 匹配所有元素
+            3.$('.class')     - 获取同一类class的元素
+            4.$("div")        - 获取同一类标签的所有元素
+            5.$('div,p,li')   - 选取多个元素
+            6.$('li.current') - 交集元素
+            7.$('ul > li')    - 子代选择器
+            8.$('ul li')      - 后代选择器
+        -->
+        <div>我是div</div>
+        <div class="app01">我是div</div>
+        <p>我是p</p>
+        <ol>
+            <li>我是ol 的</li>
+            <li>我是ol 的</li>
+            <li>我是ol 的</li>
+            <li>我是ol 的</li>
+            <li>我是ol 的</li>
+        </ol>
+        <ul>
+            <li>我是ul 的</li>
+            <li>我是ul 的</li>
+            <li class="test01">我是ul 的</li>
+            <li>我是ul 的</li>
+            <li>我是ul 的</li>
+        </ul>
+
+    <!-- jq筛选选择器 -->
+        <!-- 
+            列：
+            :first     - 获取第一个元素
+            :last      - 获取最后一个元素
+            :eq(index) - 获取指定 index 下标的元素 从0开始
+            :odd()     - 索引号为 奇数 的元素
+            :even()    - 索引号为 偶数 的元素
+        -->
+
+    <!-- jq筛选方法 -->
+        <!-- 
+            列：
+            .parent()           - 查找最近一级的父级
+            .children("选择器")  - 相当于 子代元素选择器
+            .find("选择器")      - 相当于 后代选择器
+            .siblings("选择器")  - 查找兄弟节点，不包括自身
+            .nextAll([expr])     - 查找当前元素之后的 同辈 元素
+            .prevtAll([expr])    - 查找当前元素之前的 同辈 元素
+            .hasClass(class)     - 判断元素是否还有 某个类， true | false
+            .eq(索引)             - 下标指定元素 从0开始
+        -->
+
+    <!-- jq设置样式 -->
+        <!-- 
+            语法：$('div').css('属性','值')
+         -->
+        <!-- 隐式迭代：自动遍历内部DOM元素的过程就叫做 隐式迭代 -->
+
+
+        <div class="app02">
+            <a href="#">点我</a>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+
+    <!-- jq排他思想 -->
+    <div class="app03">
+        <button>点击我1</button>
+        <button>点击我2</button>
+        <button>点击我3</button>
+        <button>点击我4</button>
+    </div>
+
+
+    <!-- 案列 -->
+    <div class="app04">
+        <ul>
+            <li>点我1</li>
+            <li>点我2</li>
+            <li>点我3</li>
+            <li>点我4</li>
+            <li>点我5</li>
+            <li>点我6</li>
+            <li>点我7</li>
+            <li>点我8</li>
+            <li>点我9</li>
+        </ul>
+        <div class="app04_content">
+            <div><a href="#">图片1</a></div>
+            <div><a href="#">图片2</a></div>
+            <div><a href="#">图片3</a></div>
+            <div><a href="#">图片4</a></div>
+            <div><a href="#">图片5</a></div>
+            <div><a href="#">图片6</a></div>
+            <div><a href="#">图片7</a></div>
+            <div><a href="#">图片8</a></div>
+            <div><a href="#">图片9</a></div>
+        </div>
+    </div>
+    
+</body>
+</html>

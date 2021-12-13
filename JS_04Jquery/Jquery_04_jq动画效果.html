@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery3.min.js"></script>
+    <script>
+        $(function(){
+            // 显示隐藏
+            $('.app01 button').eq(0).click(function(){
+                $('.app01 p').show('fast');
+            })
+
+            $('.app01 button').eq(1).click(function(){
+                $('.app01 p').hide('slow',function(){$('.app01').css('background','red')});
+            })
+            $('.app01 button').eq(2).click(function(){
+                $('.app01 p').toggle();
+            })
+
+            // 滑动效果
+            $('.app02 ul li').mouseover(function(){
+                var num = $(this).index();
+                $('.app02').children().eq(num+1).slideDown().siblings('div').hide();
+            })
+
+
+            // 事件切换 hover
+            // $('.app04 button').hover(function(){
+            //     $(this).siblings().slideDown(200)
+            // },function(){
+            //     $(this).siblings().slideUp(200)
+            // })
+                // 注意：如果只写一个函数，那么鼠标经过 离开 都会触发这个函数
+
+
+            // 动画停止 stop()
+            $('.app04 button').hover(function(){
+                // stop必须写在动画的前面 
+                $(this).siblings().stop().slideToggle(100)
+            })
+
+            // fadeTo() 透明变化
+            $('.app05 button').click(function(){
+                $('.app05 div').fadeTo(1000, 0.5);
+                // speed 必须写
+                // opacity 必须写
+            })
+
+
+        });
+    </script>
+    <style>
+        ul{padding: 0; margin: 0; list-style: none;}
+        .app02{width: 500px;height: 250px; border: 1px solid black;position: relative;}
+        .app02 li{float: left; width: 33.3%;height: 100px;text-align: center;line-height: 100px;}
+        .app02 div{display: none; text-align: center; line-height: 150px; margin-top: 100px; width: 100%;height: 150px;position: absolute;top: 0;left: 0;background: darkcyan;}
+
+        .app04 div{width: 200px;height: 200px;background: gray;display: none;}
+        .app05 div{width: 200px;height: 200px;background: black;}
+        
+
+    </style>
+</head>
+<body>
+    <!-- 显示影藏 -->
+        <!-- 1.show([speed],[easing],[fn]) 可跟参数 或 不跟 -->
+        <!-- 2.hide([speed],[easing],[fn]) -->
+        <!-- 3.toggle([speed],[easing],[fn]) -->
+            <!-- 
+                speed: 按照一定速度 （'slow','normal','fast'） 或 毫秒数（1000）
+                easing: 切换效果 默认 swing 可选参数 linar
+                fn：回调函数
+            -->
+    <div class="app01">
+        <button>显示</button>
+        <button>隐藏</button>
+        <button>切换</button>
+        <p>Hello world</p>
+    </div>
+
+    <!-- 滑动效果 -->
+        <!-- 1.slideDown([speed],[easing],[fn]) 下拉滑动 -->
+        <!-- 2.slideUp([speed],[easing],[fn]) 上拉滑动 -->
+        <!-- 2.slideToggle([speed],[easing],[fn]) 切换滑动 -->
+    <div class="app02">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <div>选项1</div>
+        <div>选项2</div>
+        <div>选项3</div>
+
+    </div>
+
+    <!-- 事件切换 -->
+        <!-- hover([fn,],out) - fn表示鼠标移入的时候执行的函数，out表示离开要触发的函数 -->
+    <div class="app04">
+        <button>点我</button>
+        <div></div>
+    </div>
+        <!-- 注意：如果只写一个函数，那么鼠标经过 离开 都会触发这个函数 -->
+    
+    <!-- 淡入淡出 -->
+        <!-- 1.fadeIn() 淡入-->
+        <!-- 2.fadeOut() 淡出-->
+        <!-- 3.fadeToggle() 切换-->
+        <!-- 4.fadeTo([speed],opcity,[easing],[fn]) 透明度变化 -->
+            <!-- 注意：speed 和 opacity 必须写 -->
+    <div class="app05">
+        <button>fadeTo</button>
+        <div></div>
+    </div>
+
+
+
+    <!-- 动画队列，停止动画 -->
+        <!-- 动画或者效果一旦触发就会执行，如果多次触发就会造成多个动画排队执行 -->
+        <!-- 
+            停止方法：
+            stop()
+            注意：写到动画或者效果的前面，相当于停止结束上一次动画
+         -->
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery3.min.js"></script>
+    <script>
+        $(function(){
+            // animate 动画
+            $('.app01 button').click(function(){
+                $('.app01 div').animate({
+                    top:300,
+                    left: 500,
+                    opacity:0.4,
+                    width:300,
+                    height:300,
+                },1000);
+            });
+
+
+
+
+
+
+
+        });
+    </script>
+    <style>
+        .app01{position: relative;}
+        .app01 div{width: 200px;height: 200px;background: red;position: absolute;top: 50px;left: 0;}
+
+        .app02{width: 800px; height: 80px;margin: 100px auto;border: 1px solid black;}
+        .app02 ul{margin: 0; padding: 0; list-style: none;}
+        .app02 li{float: left; position: relative;display: block;}
+        .app02_logo{position: absolute;top: 0;right: 0;width: 69px;height: 69px;}
+        .app02_bigimg{position: absolute;top: 0;right: 0;width: 220px;height: 69px;display: none;}
+        
+
+    </style>
+</head>
+<body>
+    <!-- animate 自定义动画 -->
+        <!-- 
+            语法：animate(params,[speed],[easing],[fn])
+
+            参数：params 想要更改的样式属性，以对象形式传递，必须写。 
+                属性名可以不带引号，如果是复合属性则需要采用驼峰命名法borderLeft
+         -->
+    <div class="app01">
+        <button>点我运动</button>
+        <div></div>
+    </div>
+    
+
+    <!-- 案列 -->
+    <div class="app02">
+        <ul>
+            <li><a href="#">
+                <div class="app02_logo">小图1</div>
+                <div class="app02_bigimg">大图1</div>
+            </a></li>
+            <li><a href="#">
+                <div class="app02_logo">小图2</div>
+                <div class="app02_bigimg">大图2</div>
+            </a></li>
+            <li><a href="#">
+                <div class="app02_logo">小图3</div>
+                <div class="app02_bigimg">大图3</div>
+            </a></li>
+        </ul>
+    </div>
+</body>
+</html>

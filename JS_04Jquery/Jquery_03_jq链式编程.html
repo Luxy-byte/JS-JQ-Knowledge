@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./js/jquery3.min.js"></script>
+    <script>
+        $(function(){
+            // 链式编程 - 一句搞定
+            $('.app01 button').click(function (e) { 
+                $(this).css('background','red').siblings().css('background','');
+            })
+
+            // jq样式修改
+                // 1.返回值
+            console.log($('.app02').css('width')); // 200px 带单位
+                // 2.修改
+            $('.app02').css('width','300') // 可以不用跟单位
+                // 3.多组样式修改
+            $('.app02').css({'width':'500','font-size':"24"})
+
+            // jq添加样式类
+            $('.app03').click(function(){
+                // $(this).addClass('test'); // 添加类名
+                // $(this).removeClass('test'); // 移除类名
+                $(this).toggleClass('test'); // 切换类名
+
+
+            });
+            
+
+
+
+
+        });
+    </script>
+    <style>
+        .app02{width: 200px;height: 200px;background: blueviolet;}
+        .app03{width: 200px;height: 200px;background: forestgreen;}
+        .test{background-color: purple;border: 1px solid black;}
+
+    </style>
+</head>
+
+<body>
+    <!-- 链式编程 -->
+        <!-- 核心思路：节省代码量 -->
+        <div class="app01">
+            <button>点我变色</button>
+            <button>点我变色</button>
+            <button>点我变色</button>
+            <button>点我变色</button>
+            <button>点我变色</button>
+            <button>点我变色</button>
+            <button>点我变色</button>
+            <button>点我变色</button>
+        </div>
+
+    <!-- jq修改样式 -->
+        <!-- 1.不添加值，则返回值： $('选择器').css('color') 返回元素颜色值 -->
+        <!-- 2.添加键值对 修改元素：$('选择器').css('color','值') 不用单位 -->
+        <!-- 3.多组样式修改 {}：$('选择器').css({'键','值'}) -->
+        <div class="app02">jquery
+
+        </div>
+
+    <!-- jq添加样式类 -->
+        <!-- 类似于classList.add("类名"); .remove("类名"); .toggle("类名") -->
+        <div class="app03"></div>
+        
+        <!-- 与className区别 -->
+            <!-- className 为覆盖 重写 -->
+            <!-- addClass 是 添加 或 移除 -->
+
+
+
+</body>
+
+</html>
