@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery3.min.js"></script>
+    <script>
+        $(function(){
+            $(window).scroll(function(){
+                if($(this).scrollTop() > $('.app02').offset().top){
+                    $('.btn').show();
+                }else if($(this).scrollTop() < $('.app02').offset().top){
+                    $('.btn').hide();
+                }
+            })
+
+            var flag = true; // 互斥锁 节流阀思路
+            $.each($('.btn').children(),function(i, dom){
+                $(dom).click(function(){
+                    flag = false;
+                    $('body, html').stop().animate({
+                            scrollTop: $('div').eq(i).offset().top,
+                        },function(){flag = true}) // 回调函数释放锁
+                    $(this).addClass('current').siblings().removeClass();
+
+                });
+            })
+
+            $(window).scroll(function(){
+                if(flag){
+                    $.each($('div'), function(i, dom){
+                        if($(document).scrollTop() >=  $(dom).offset().top){
+                            $('.btn').children().eq(i).addClass('current').siblings().removeClass('current')
+
+                        };
+                    })
+                };
+            })
+
+            
+
+
+        });
+    </script>
+    <style>
+        *{margin: 0; padding: 0;}
+        ul{display: none; margin: 0;padding: 0;list-style: none;position: fixed;top: 300px;left: 0;border: 1px solid black;}
+        li{cursor: pointer; width: 30px;height: 30px;background: tan;text-align: center;line-height: 30px; display: block;border-bottom: 1px solid black;}
+        li:last-child{border-bottom: 0;}
+        .app01{width: 100%;height: 500px;background: red;}
+        .app02{width: 100%;height: 500px;background: forestgreen;}
+        .app03{width: 100%;height: 500px;background: cornflowerblue;}
+        .app04{width: 100%;height: 500px;background: blueviolet;}
+        .app05{width: 100%;height: 500px;background: slategray;}
+        .current{font-size: 20px;}
+        
+    </style>
+</head>
+<body>
+
+    <ul class="btn">
+        <li class="current">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <div class="app01">1</div>
+    <div class="app02">2</div>
+    <div class="app03">3</div>
+    <div class="app04">4</div>
+    <div class="app05">5</div>
+    <div class="app05">5</div>
+    <div class="app05">5</div>
+    <div class="app05">5</div>
+    
+</body>
+</html>

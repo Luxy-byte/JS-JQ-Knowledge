@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery3.min.js"></script>
+    <script>
+        $(function(){
+            // jq-事件处理: on()
+                // 1.一次可以处理多个事件
+            $('.app01').on({
+                mouseenter: function(){
+                    $(this).css('background','red')
+                },
+                click: function(){
+                    $(this).html('hello world')
+                },
+                mouseleave:function(){
+                    $(this).html('bye')
+                }
+            })
+                // 如果处理的多个事件是相同的 效果相当于 hover
+            $('.app01').on("mouseenter mouseleave",function(){
+                $(this).toggleClass('current')
+            })
+
+                // 2.可以时间委派操作: 把原来加给子元素身上的事件绑定在父元素身上,把事件委派给父元素
+            $('.app02').on('click','p',function(){
+                $(this).css('font-size','20px');//事件是绑定在 父级div身上的,但是触发是通过元素p
+
+
+                // 3.可以给 动态创建的元素绑定事件
+                var test = $('<p>我是2儿子</p>')
+                $('.app02').append(test);
+            })
+
+                // 3.可以给 动态创建的元素绑定事件
+            // var test = $('<p>我是2儿子</p>')
+            // $('.app02').append(test);
+
+
+
+                // 案列:
+            $('.app03 button').click(function(){
+                var content = $('.app03 textarea').val();
+                var li = $('<li><span>'+content+'</span><a href="#">删除</a></li>')
+                $('.app03 ul').prepend(li)
+                $('.app03 textarea').val('')
+            });
+            $('.app03 ul').on('click','li a',function(){
+                $(this).parent().slideUp(function(){
+                    $(this).remove();
+
+                });
+            });
+            
+
+            
+
+
+        });
+    </script>
+    <style>
+        .app01, .app02{width: 100px;height: 100px;background-color: cadetblue;}
+        .current{width: 300px;height: 300px;}
+        .app02{background-color: coral;}
+        .app03{width: 300px;height: 500px;margin: 0 auto;border: 1px solid black;position: relative;}
+        .app03 ul{margin: 0;padding: 0;list-style: none;}
+        .app03 li{float: left;display: block;border-bottom: 1px dashed #ccc;width: 100%;height: 24px;margin-top: 5px;}
+        .app03 li a{float: right;display: block;}
+        .app03 button{display: block;margin: 10px auto;width: 100px;height: 25px;position: absolute;top: 90%;left: 33%;}
+        .app03 textarea{width: 80%;height: 40px;resize: none;margin: 10px auto;display: block;position: absolute;top: 80%;left: 9%;}
+
+
+    </style>
+</head>
+<body>
+    <!-- 事件注册: -->
+        <!-- 传统: element.onclick = function(){} 注册单一事件 -->
+    <div class="app01"></div>
+
+    <!-- 事件处理: on(),可以同时处理多个事件 -->
+        <!-- 
+            语法: $('div').on(event, [selector],fn())
+        -->
+
+    <!-- 事件委派: -->
+    <div class="app02">
+        <p>hello world</p>
+    </div>
+
+
+    <!-- 案列: -->
+    <h1>微博发布:</h1>
+    <div class="app03">
+        <ul>
+            <li><span>hello world</span><a href="#">删除</a></li>
+            <li><span>hello world</span><a href="#">删除</a></li>
+            <li><span>hello world</span><a href="#">删除</a></li>
+            <li><span>hello world</span><a href="#">删除</a></li>
+            <li><span>hello world</span><a href="#">删除</a></li>
+
+        </ul>
+
+        <textarea name="app03content" id="" cols="30" rows="10"></textarea>
+        <button>提交</button>
+
+
+
+    </div>
+    
+</body>
+</html>

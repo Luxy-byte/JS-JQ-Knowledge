@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery3.min.js"></script>
+    <script>
+        $(function(){
+            // 1.全选按钮
+            $('.checkall').change(function(){
+                $('.j-checkbox, .checkall').prop('checked',$(this).prop('checked'));
+
+                // 更换背景颜色
+                if($(this).prop('checked')){
+                    $('.app01_goods').addClass('checkitem');
+                }else{
+                    $('.app01_goods').removeClass('checkitem');
+                }
+                countFn()
+            })
+
+            // 2.子选框确定全选按钮
+            $('.j-checkbox').change(function(){
+                // 同类名下的复选框的勾选个数可以通过 :checked 来确认，注意是同类名下
+                // console.log($('.j-checkbox:checked').length);
+
+                if($('.j-checkbox:checked').length === $('.j-checkbox').length){
+                    $('.checkall').prop('checked', true);
+                }else{
+                    $('.checkall').prop('checked', false);
+                }
+
+                $(this).parents('.app01_goods').toggleClass('checkitem')
+                countFn()
+            })
+
+                // jq修改元素内容
+                    // html() 获取元素内容 innerHTML
+                    // html('内容') 修改元素内容
+
+                    // text() 获取元素文本内容 innerText
+                    // text('内容') 修改元素文本内容
+
+                    // val() 获取设置表单值
+
+
+
+            // 3.增减商品数量  -- toFixed(2) 可以强制保留两位小数
+            $('.increment').click(function(e){
+                var num = $(this).siblings('.numgoods').val();
+                if(num < 1){
+                    num = 0;
+                }else if(num >= 1){
+                    num++;
+                }
+                $(this).siblings('.numgoods').val(num);
+
+                var eachgoods = parseFloat($(this).parent().siblings('.pergoods').text().substr(1));
+                $(this).parent().siblings('.totalgoods').html('<strong>￥' + parseFloat(eachgoods * num).toFixed(2) +'</strong>')
+                countFn();
+            })
+            $('.decrement').click(function(e){
+                var num = $(this).siblings('.numgoods').val();
+                if(num == 1){
+                    num = 1;
+                }else if(num >= 1){
+                    num--;
+                }
+                $(this).siblings('.numgoods').val(num);
+                var eachgoods = parseFloat($(this).parent().siblings('.pergoods').text().substr(1));
+                $(this).parent().siblings('.totalgoods').html('<strong>￥' + parseFloat(eachgoods * num).toFixed(2) +'</strong>')
+                countFn()
+            })
+
+            $('.numgoods').change(function(){
+                var eachgoods = parseFloat($(this).parent().siblings('.pergoods').text().substr(1));
+                var num = $(this).val()
+                $(this).parent().siblings('.totalgoods').html('<strong>￥' + parseFloat(eachgoods * num).toFixed(2) +'</strong>')
+                countFn()
+            })
+
+
+
+                // 元素操作 主要是：遍历 创建 添加 删除元素操作
+
+                // jq-遍历元素
+                    // jq隐式操作是对同一类元素做相同操作。如果想要给同一类元素做不同操作，需要用到遍历
+
+                    // 1.页面元素：语法：$('类名').each(function(index,domEle){......})
+                    // index是每个元素的索引号，domEle是每个DOM元素，不是jq对象  参数可自定义
+
+                    // 2.非页面元素：使用： $.each('遍历内部变量或对象或文档元素'，function(i,ele){......})
+                    // 这里的$.each是遍历整个文档里面的任何内容， 比如局部变量。 i 为属性名，ele为属性值
+
+
+
+
+            // 4.统计总的商品数和件数
+            function countFn() {
+                var sum_pay = 0;
+                var total_num = 0;
+
+                $('.j-checkbox:checked').parents('.app01_goods').each(function(index,dom){
+                    // $(dom).children().children('.totalgoods').text().substr(1)
+                    var payment = parseFloat($(dom).find('strong').text().substr(1));
+                    var num = parseFloat($(dom).find('.numgoods').val())
+                    sum_pay += payment;
+                    total_num += num;
+                })
+                console.log(sum_pay, total_num);
+                $('.total_num').text(total_num);
+                $('.total_payment').html('<strong>￥' + sum_pay.toFixed(2) +'</strong>')
+            }
+            countFn();
+
+
+
+                // jq-创建元素
+                // 语法: $('<li></li>')  - 动态创建 li 元素
+
+
+                // jq-添加元素
+                    // 1.内部添加 (原生JSappendChild)语法: $('类名').append('创建好的元素或内容')  - 父子关系
+                        // $('div').append(li)  添加到最后
+                        // $('div').prepend(li)  添加到最前
+
+                    // 2.外部添加 语法:$('类名').before('创建好的元素或内容') - 兄弟关系
+                        // $('div').before(li)  添加到目标元素 前面
+                        // $('div').after(li)  添加到目标元素 后面
+
+                // jq-删除元素
+                    // 1.删除匹配元素自身 语法: $('类名').remove()
+
+                    // 2.删除匹配元素中的所有子节点 语法: $('类名').empty()
+
+                    // 3.清空匹配元素内容 语法:$('类名').html("")
+
+            // 5. 删除添加商品  - 注意: parents() 和 parent() 区别
+            $('.delgoods').click(function(){
+                $(this).parents('.app01_goods').remove();
+                countFn();
+            });
+            $('.cleargoods').click(function(){
+                $('.j-checkbox:checked').parents('.app01_goods').remove();
+                $('.checkall').prop('checked', false)
+                countFn();
+            });
+            $('.clearall').click(function(){
+                $('.app01Body').empty();
+                $('.checkall').prop('checked', false)
+                countFn();
+            })
+
+            // 6.优化
+            // 计算选定的商品件数 和 总价
+            // 选择以后改变背景颜色
+
+
+                // jq-尺寸操作
+                    // 1.width()|height() 取得 或 修改 匹配元素的宽度 高度
+                    // 2.innerWidth() | innerHeight() 取得 或 修改 匹配元素的宽度 高度,包括padding
+                    // 3.outerWidth() | outerHeight() 取得 或 修改 匹配元素的宽度 高度,包括padding border
+                    // 4.outerWidth(true) | outerHeight(true) 取得匹配元素的宽度 高度,包括padding border margin
+                        // 不必写单位
+
+                // jq-位置操作
+
+                    // 1.offset() 匹配元素相对于 文档 的偏移坐标,和 父级没有任何关系
+                        // (1.)获取top 和 left值: $('类名').offset().top| .left  -- 返回数字
+                        // (2.)修改top 和 left值: $('类名').offset({top:值,left:值}) -- 对象形式修改
+
+                    // 2.position() 匹配元素获取带有定位父级位置的偏移, 如果没有定位 则以文档为准
+                        // (1.)获取距离定位父级的 top 和 left 值: $('类名').position().top| .left 
+                        // 注意: 只能获取 不能 设置.
+
+                    // 3.scrollTop() | scrollLeft() 匹配元素 window 上卷 或 左卷的长度
+                        // (1.)获取 $(window).scrollTop()  -- 返回数字
+                        // (2.)设置 $(window).scrollTop(值)  -- 数字即可
+
+                    // 案列:
+                    var boxtop = $('.app02').offset().top;
+                    $(window).scroll(function(){
+                        console.log($(this).scrollTop());
+                        if($(this).scrollTop() >= boxtop){
+                            $('.app03').fadeIn();
+                        }else if($(this).scrollTop() < boxtop){
+                            $('.app03').fadeOut();
+                        }
+                    })
+
+                    // 返回顶部
+                    $('.app03').click(function(){
+                        // 不能是文档 而是 html 和 body元素
+                        $('body, html').stop().animate({
+                            scrollTop:0,
+                        })
+                    })
+
+            
+
+        });
+    </script>
+    <style>
+        *{margin: 0; padding: 0;list-style: none;}
+        .app01{width: 900px;margin: 10px auto;border: 1px solid #ccc;}
+
+        .app01Header{width: 100%;height: 30px;background-color: gray;}
+        .app01Header li{float: left;display: block;width: 12%;height: 100%;text-align: center;line-height: 30px;}
+        .app01Header li:first-child{width: 10%;}
+        .app01Header li:nth-child(2){width: 30%;text-align: left;padding-left: 10px;}
+
+        .app01Body{margin-top: 5px;width: 100%;}
+        .app01_goods{width: 100%;height: 50px;border-bottom: 1px solid #ccc;margin-bottom: 5px;}
+        .app01_goods input{width: 30px;height: 18px;border: 0;font-size: 16px;outline: none;border-bottom: 1px solid black;}
+        .app01_goods li{float: left;width: 12%;text-align: center;line-height: 50px;}
+        .app01_goods li:first-child{width: 10%;}
+        .app01_goods li:nth-child(2){width: 30%;text-align: left;padding-left: 10px;}
+        .app01_goods li:nth-child(4) button{width: 20px;height: 18px;}
+
+        .app01Foot{width: 100%;height: 80px;}
+        .app01Foot a{text-decoration: none;color: black;}
+        .app01Foot li{float: left;width: 12%;text-align: center;line-height: 80px;font-size: 14px;}
+        .app01Foot li:first-child{width: 10%;}
+        .app01Foot li:nth-child(2){width: 12%;height: 100%;}
+        .app01Foot li:nth-child(3){width: 12%;height: 100%;}
+        .app01Foot li:nth-child(4){width: 20%;height: 100%;}
+        .app01Foot li:nth-child(4) span{color: red;font-size: 16px;}
+        .app01Foot li:nth-child(5){text-align: right;}
+        .app01Foot li:last-child{width: 20%;height: 100%;background-color: orange;font-size: 20px;}
+
+        .checkitem{background: sandybrown; opacity: 0.8;}
+
+        .app02{width: 100%;height: 2000px;background: seagreen;opacity: 0.5;}
+        .app03{position: fixed; top: 800px; left: 0; width: 30px;height: 80px;display: none;}
+    </style>
+</head>
+<body>
+    <h1>商品详情:</h1>
+    <div class="app01">
+        <div class="app01Header">
+            <ul>
+                <li><input type="checkbox" class="checkall">全选</li>
+                <li>商品</li>
+                <li>单价</li>
+                <li>数量</li>
+                <li>小计</li>
+                <li>操作</li>
+            </ul>
+        </div>
+        <div class="app01Body">
+            <div class="app01_goods">
+                <ul>
+                    <li><input type="checkbox" class="j-checkbox"></li>
+                    <li><span>这是第一本书</span></li>
+                    <li class="pergoods">￥12.60</li>
+                    <li>
+                        <button class="decrement">-</button>
+                        <input type="text" value="1" class="numgoods">
+                        <button class="increment">+</button>
+                    </li>
+                    <li class="totalgoods"><strong>￥12.60</strong></li>
+                    <li class="delgoods">删除</li>
+                </ul>
+            </div>
+
+            <div class="app01_goods">
+                <ul>
+                    <li><input type="checkbox" class="j-checkbox"></li>
+                    <li><span>这是第二本书</span></li>
+                    <li class="pergoods">￥24.80</li>
+                    <li>
+                        <button class="decrement">-</button>
+                        <input type="text" value="1" class="numgoods">
+                        <button class="increment">+</button>
+                    </li>
+                    <li class="totalgoods"><strong>￥24.80</strong></li>
+                    <li class="delgoods">删除</li>
+                </ul>
+            </div>
+
+            <div class="app01_goods">
+                <ul>
+                    <li><input type="checkbox" class="j-checkbox"></li>
+                    <li><span>这是第三本书</span></li>
+                    <li class="pergoods">￥29.80</li>
+                    <li>
+                        <button class="decrement">-</button>
+                        <input type="text" value="1" class="numgoods">
+                        <button class="increment">+</button>
+                    </li>
+                    <li class="totalgoods"><strong>￥29.80</strong></li>
+                    <li class="delgoods">删除</li>
+                </ul>
+            </div>
+
+            
+            <div class="app01_goods">
+                <ul>
+                    <li><input type="checkbox" class="j-checkbox"></li>
+                    <li><span>这是第四本书</span></li>
+                    <li class="pergoods">￥34.88</li>
+                    <li>
+                        <button class="decrement">-</button>
+                        <input type="text" value="1" class="numgoods">
+                        <button class="increment">+</button>
+                    </li>
+                    <li class="totalgoods"><strong>￥34.80</strong></li>
+                    <li class="delgoods">删除</li>
+                </ul>
+            </div>
+        </div>
+        <div class="app01Foot">
+            <ul>
+                <li><input type="checkbox" class="checkall">全选</li>
+                <li><a href="javascript:" class="cleargoods">删除选中的商品</a></li>
+                <li><a href="javascript:" class="clearall">清理购物车</a></li>
+                <li>已经选<span class="total_num"></span>件商品</li>
+                <li>总价：</li>
+                <li class="total_payment"><strong></strong></li>
+                <li>去结算</li>
+            </ul>
+
+
+        </div>
+    </div>
+
+    <div class="app02"></div>
+    <button class="app03">回到顶部</button>
+    
+</body>
+</html>
