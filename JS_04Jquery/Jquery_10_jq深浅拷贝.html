@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery3.min.js"></script>
+    <script>
+        $(function(){
+            // $.extend 对象拷贝
+            var targetObj = {};
+            var obj1 = {
+                id:1,
+                name:'luxh',
+                msg:{
+                    age:18,
+                }
+            }
+
+            // 1.如果被拷贝对象 没有 数据
+                // $.extend(target,obj)
+                $.extend(targetObj,obj1)
+                console.log(targetObj.name);
+
+            // 2.如果被拷贝对象 有 数据 
+                var targetObj1 = {
+                    name:'sasa',
+                    msg:{
+                        age:20,
+                        sex:'男'
+                    }
+                };
+                $.extend(targetObj1,obj1)
+                console.log(targetObj1.name); // 会覆盖原有数据
+
+            // 3.深拷贝 拷贝具体内容
+                $.extend(true,targetObj1,obj1)
+                console.log(targetObj1);
+
+
+
+
+        });
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- jq-拷贝对象 -->
+        <!-- 如果想把某个对象拷贝给另一个对象使用，此时可以使用 extend 方法 -->
+        <!-- 
+            语法：
+            $.extend([deep],target,object1,[objectN])
+            1.deep: 默认false浅拷贝，true深拷贝
+            2.target：要拷贝的目标对象
+            3.object1：待拷贝到第一个对象的对象
+            4.objectN：待拷贝到第N个对象的对象
+            5.浅拷贝 是把被拷贝的对象 复杂数据类中的地址 拷贝给目标对象，修改目标对象会影响拷贝对象
+            6.深拷贝 完全拷贝的是对象 而不是地址，修改被拷贝对象数据 不会影响到拷贝对象
+         -->
+    
+</body>
+</html>

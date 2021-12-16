@@ -55,10 +55,47 @@
 
                 });
             });
-            
+
+
+            // jq-事件处理： off()
+
+            $('.app04').on({
+                mouseenter:function(){
+                    $(this).css('background','gray');
+                },
+                mouseleave:function(){
+                    $(this).css('background','green');
+                },
+                click:function(){
+                    // $(this).off(); // 不带参数 是移除 全部 绑定事件
+                    $(this).off('mouseleave'); // 移除某一个事件
+
+                    // 解除事件委托：
+                    // $('类名').off('事件','子元素类名')
+
+                }
+            })
+
+
+            // jq-触发单次事件：one()
+            $('.app05').one('click',function(){
+                alert(11);
+            })
 
             
+            // jq-自动触发事件：trigger()
+            $('.app06').on({
+                click:function(){
+                    alert(12)
+                },
+            })
+                // 1.$('类名').事件() 实现自动触发  $('.app06').click()
 
+                // 2.$('类名').trigger('type') 实现自动触发 $('.app06').trigger('click')
+
+                // 3.$('类名').triggerHandler(type) 实现自动触发 $('.app06').triggerHandler("click")
+
+                    // 注意：第 三 种不会去触发元素的默认行为，比如input的光标聚焦focus
 
         });
     </script>
@@ -72,6 +109,10 @@
         .app03 li a{float: right;display: block;}
         .app03 button{display: block;margin: 10px auto;width: 100px;height: 25px;position: absolute;top: 90%;left: 33%;}
         .app03 textarea{width: 80%;height: 40px;resize: none;margin: 10px auto;display: block;position: absolute;top: 80%;left: 9%;}
+
+        .app04,.app05,.app06{width: 200px; height: 200px;background-color: brown;margin: 10px auto;}
+        .app05{background-color: cadetblue;}
+        .app06{background-color: chocolate;}
 
 
     </style>
@@ -103,13 +144,19 @@
             <li><span>hello world</span><a href="#">删除</a></li>
 
         </ul>
-
         <textarea name="app03content" id="" cols="30" rows="10"></textarea>
         <button>提交</button>
-
-
-
     </div>
     
+    <!-- 事件处理：off() -->
+        <!-- 可以关闭on()方法添加的事件处理程序 -->
+
+    <div class="app04">off()事件移除</div>
+
+    <!-- 只触发 单次 事件：one() -->
+    <div class="app05">one()单次事件</div>
+
+    <!-- 自动触发事件：trigger() -->
+    <div class="app06">trigger()自动事件</div>
 </body>
 </html>
